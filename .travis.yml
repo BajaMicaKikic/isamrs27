@@ -3,5 +3,4 @@ language: csharp
 mono: none
 dotnet: 2.1.104
 solution: mrs/mrs.sln
-install:
-  -nuget restore mrs.sln
+
