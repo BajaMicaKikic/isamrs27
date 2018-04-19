@@ -1,7 +1,7 @@
 dist: trusty
 language: csharp
 mono: none
-dotnet: 2.1.104
+dotnet: 1.1.5
 solution: mrs/mrs.sln
 script:
  - dotnet restore
