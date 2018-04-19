@@ -1,6 +1,6 @@
 language: csharp
 solution: "./mrs/mrs.sln"
-dotnet: 2.0.7
+dotnet: 2.0.0
 install:
   - sudo nuget restore ./mrs/mrs.sln
 script:
