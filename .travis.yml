@@ -1,9 +1,9 @@
 language: csharp
-solution: "mrs/mrs.sln"
+solution: "./mrs/mrs.sln"
 mono:none
 install:
   - sudo apt-get install -y gtk-sharp2
-  - nget restore mrs/mrs.sln
+  - sudo nuget restore ./mrs/mrs.sln
 dotnet: 1.1.5
 script:
  - dotnet restore
