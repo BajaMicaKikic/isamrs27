@@ -3,5 +3,3 @@ language: csharp
 mono: none
 dotnet: 2.1.4
 solution: mrs/mrs.sln
-script:
- - dotnet restore
