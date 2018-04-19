@@ -1,3 +1,7 @@
 language: csharp
-dotnet: 1.0.0-preview2-003121
-mono: none
+solution: "./mrs/mrs.sln"
+install:
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./mrs/mrs.sln
+script:
+- xbuild ./mrs/mrs.sln
+- mono ./mrs/packages/xunit.runner.console*/tools/xunit.console.exe ./mrs/mrs.Tests/bin/Debug/mrs.Tests.dll
