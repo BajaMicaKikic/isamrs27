@@ -1,7 +1,9 @@
 language: csharp
-solution: "./mrs/mrs.sln"
+solution: "mrs/mrs.sln"
 install:
-- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./mrs/mrs.sln
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore mrs/mrs.sln
+mono: none
+dotnet: 1.1.5
 script:
-- xbuild ./mrs/mrs.sln
-- mono ./mrs/packages/xunit.runner.console*/tools/xunit.console.exe ./mrs/mrs.Tests/bin/Debug/mrs.Tests.dll
+ - dotnet restore
