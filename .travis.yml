@@ -1,9 +1,6 @@
 language: csharp
-solution: mrs/mrs.sln
-
-matrix:
-  include:
-    - dotnet: 1.1.5
-      mono: none
-      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
-    - mono: latest
+mono: none
+dotnet: 2.0.0
+script:
+  - dotnet restore
+  - dotnet build ./mrs/ 
