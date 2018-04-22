@@ -12,6 +12,7 @@ namespace mrs.Controllers
     {
         public IActionResult Index()
         {
+            ViewData["Message"] = "Message";
             return View();
         }
 
