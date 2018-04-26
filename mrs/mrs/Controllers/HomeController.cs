@@ -4,15 +4,24 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using mrs.ApplicationCore.Entities;
+using mrs.ApplicationCore.Interfaces.Repository;
 using mrs.Models;
 
 namespace mrs.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserRepository _userRepository;
+
+        public HomeController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public IActionResult Index()
         {
-            ViewData["Message"] = "Message";
             return View();
         }
 
