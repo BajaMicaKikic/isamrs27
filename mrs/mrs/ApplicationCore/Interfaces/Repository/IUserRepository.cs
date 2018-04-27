@@ -8,6 +8,6 @@
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IAsyncRepository{mrs.ApplicationCore.Entities.User}" />
     public interface IUserRepository:IRepository<User>,IAsyncRepository<User>
     {
-        // Add methods signatures.
+        // Add method signatures.
     }
 }
