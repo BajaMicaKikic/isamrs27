@@ -13,7 +13,6 @@ namespace mrs.ApplicationCore.Entities
         /// </summary>
         public Account()
         {
-            Users = new List<User>();
         }
         /// <summary>
         /// Gets or sets the type of the account.
@@ -22,12 +21,17 @@ namespace mrs.ApplicationCore.Entities
         /// The type of the account.
         /// </value>
         public string AccountType { get; set; }
+        private List<User> _users = new List<User>();
         /// <summary>
         /// Gets or sets the users.
         /// </summary>
         /// <value>
         /// The users.
         /// </value>
-        public ICollection<User> Users { get; set; }
+        public ICollection<User> Users
+        {
+            get { return _users; }
+            set { _users = (List<User>)value; }
+        }
     }
 }

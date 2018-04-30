@@ -47,8 +47,19 @@ namespace mrs
         {
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IActorRepository, ActorRepository>();
+            services.AddScoped<ICultureObjectRepository, CultureObjectRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IProjectionRepository, ProjectionRepository>();
+            services.AddScoped<IPropAdRepository, PropAddRepository>();
+            services.AddScoped<IRemarkRepository, RemarkRepository>();
+            services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
             services.AddMvc();
+
             _services = services;
         }
 
