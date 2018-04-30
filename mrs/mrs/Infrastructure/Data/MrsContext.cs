@@ -16,7 +16,7 @@
         /// <summary>
         /// The connection string
         /// </summary>
-        private string connString = "server=localhost;database=mrs;uid=root;pwd=1234;SslMode=none;charset=utf8;";
+        private string connString = "server=localhost;database=mrs;uid=root;SslMode=none;charset=utf8;";
         /// <summary>
         /// Initializes a new instance of the <see cref="MrsContext"/> class.
         /// </summary>
