@@ -24,6 +24,8 @@ namespace mrs.Infrastructure.Data.Mapping
             builder.Property(u => u.LastName).HasColumnName("LastName").IsUnicode().IsRequired();
             builder.Property(u => u.EmailAddress).HasColumnName("Email").IsRequired();
             builder.Property(u => u.AccountId).HasColumnName("AccountId").IsRequired();
+            builder.Property(u => u.Password).HasColumnName("Password").IsRequired();
+            builder.Property(u => u.ConfirmPassword).HasColumnName("ConfirmPassword").IsRequired().Equals("Password");
 
             // Relations
             builder.HasOne(u => u.Account)

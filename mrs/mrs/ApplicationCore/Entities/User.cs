@@ -42,6 +42,8 @@ namespace mrs.ApplicationCore.Entities
         /// <value>
         /// The account identifier.
         /// </value>
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
         public long AccountId { get; set; }
         /// <summary>
         /// Gets or sets the account.
