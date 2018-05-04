@@ -58,6 +58,7 @@ namespace mrs
             services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddSession();
             services.AddMvc();
 
             _services = services;
@@ -78,6 +79,7 @@ namespace mrs
 
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
