@@ -23,11 +23,19 @@ namespace mrs.ApplicationCore.Entities
         /// </value>
         public string PropName { get; set; }
         /// <summary>
+        /// The property ads
+        /// </summary>
+        private List<PropAd> _propAds = new List<PropAd>();
+        /// <summary>
         /// Gets or sets the property ads.
         /// </summary>
         /// <value>
         /// The property ads.
         /// </value>
-        public ICollection<PropAd> PropAds { get; set; }
+        public ICollection<PropAd> PropAds
+        {
+            get { return _propAds; }
+            set { _propAds = (List<PropAd>)value; }
+        }
     }
 }

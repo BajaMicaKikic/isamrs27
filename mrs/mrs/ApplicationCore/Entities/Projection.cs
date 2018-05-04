@@ -11,7 +11,6 @@
         /// </summary>
         public Projection()
         {
-
         }
         /// <summary>
         /// Gets or sets the name of the projection.

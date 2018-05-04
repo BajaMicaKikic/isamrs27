@@ -13,7 +13,6 @@ namespace mrs.ApplicationCore.Entities
         /// </summary>
         public Actor()
         {
-            Projections = new List<Projection>();
         }
         /// <summary>
         /// Gets or sets the first name.
@@ -30,11 +29,19 @@ namespace mrs.ApplicationCore.Entities
         /// </value>
         public string LastName { get; set; }
         /// <summary>
+        /// The projections
+        /// </summary>
+        private List<Projection> _projections = new List<Projection>();
+        /// <summary>
         /// Gets or sets the projections.
         /// </summary>
         /// <value>
         /// The projections.
         /// </value>
-        public ICollection<Projection> Projections { get; set; }
+        public ICollection<Projection> Projections
+        {
+            get { return _projections; }
+            set { _projections = (List<Projection>)value; }
+        }
     }
 }

@@ -13,7 +13,6 @@ namespace mrs.ApplicationCore.Entities
         /// </summary>
         public CultureObject()
         {
-            Remarks = new List<Remark>();
         }
         /// <summary>
         /// Gets or sets the name.
@@ -44,12 +43,20 @@ namespace mrs.ApplicationCore.Entities
         /// </value>
         public Object ObjectDiscriminator { get; set; }
         /// <summary>
+        /// The remarks
+        /// </summary>
+        private List<Remark> _remarks = new List<Remark>();
+        /// <summary>
         /// Gets or sets the remarks.
         /// </summary>
         /// <value>
         /// The remarks.
         /// </value>
-        public ICollection<Remark> Remarks { get; set; }
+        public ICollection<Remark> Remarks
+        {
+            get { return _remarks; }
+            set { _remarks = (List<Remark>)value; }
+        }
 
     }
     /// <summary>

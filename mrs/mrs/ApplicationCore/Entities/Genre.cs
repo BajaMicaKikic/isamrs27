@@ -13,7 +13,6 @@ namespace mrs.ApplicationCore.Entities
         /// </summary>
         public Genre()
         {
-            Projections = new List<Projection>();
         }
         /// <summary>
         /// Gets or sets the name of the genre.
@@ -22,6 +21,20 @@ namespace mrs.ApplicationCore.Entities
         /// The name of the genre.
         /// </value>
         public string GenreName { get; set; }
-        public ICollection<Projection> Projections { get; set; }
+        /// <summary>
+        /// The projections
+        /// </summary>
+        private List<Projection> _projections = new List<Projection>();
+        /// <summary>
+        /// Gets or sets the projections.
+        /// </summary>
+        /// <value>
+        /// The projections.
+        /// </value>
+        public ICollection<Projection> Projections
+        {
+            get { return _projections; }
+            set { _projections = (List<Projection>)value; }
+        }
     }
 }

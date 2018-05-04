@@ -43,7 +43,19 @@ namespace mrs.ApplicationCore.Entities
         /// The account identifier.
         /// </value>
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        /// <summary>
+        /// Gets or sets the confirm password.
+        /// </summary>
+        /// <value>
+        /// The confirm password.
+        /// </value>
+        public string ConfirmPassword { get; set; }// TODO: Stefan Kikic: Check purpose of this attribute!
+        /// <summary>
+        /// Gets or sets the account identifier.
+        /// </summary>
+        /// <value>
+        /// The account identifier.
+        /// </value>
         public long AccountId { get; set; }
         /// <summary>
         /// Gets or sets the account.
@@ -53,18 +65,34 @@ namespace mrs.ApplicationCore.Entities
         /// </value>
         public Account Account { get; set; }
         /// <summary>
+        /// The remarks
+        /// </summary>
+        private List<Remark> _remarks = new List<Remark>();
+        /// <summary>
         /// Gets or sets the remarks.
         /// </summary>
         /// <value>
         /// The remarks.
         /// </value>
-        public ICollection<Remark> Remarks { get; set; }
+        public ICollection<Remark> Remarks
+        {
+            get { return _remarks; }
+            set { _remarks = (List<Remark>)value; }
+        }
+        /// <summary>
+        /// The property ads
+        /// </summary>
+        private List<PropAd> _propAds = new List<PropAd>();
         /// <summary>
         /// Gets or sets the property ads.
         /// </summary>
         /// <value>
         /// The property ads.
         /// </value>
-        public ICollection<PropAd> PropAds { get; set; }
+        public ICollection<PropAd> PropAds
+        {
+            get { return _propAds; }
+            set { _propAds = (List<PropAd>)value; }
+        }
     }
 }
