@@ -54,6 +54,9 @@ namespace mrs.ApplicationCore.Entities
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
+        public string Town { get; set; }
+        public string Phone { get; set; }
+
         public long AccountId { get; set; }
         /// <summary>
         /// Gets or sets the account.
