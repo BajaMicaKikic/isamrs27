@@ -100,5 +100,14 @@ namespace mrs.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [HttpPost]
+
+        public JsonResult FacebookLogin(FacebookLoginModel model)
+        {
+            TempData["uid"] = model.uid.ToString();
+            TempData["accessToken"] = model.accessToken.ToString();
+                        
+            return Json(new { success = true });
+        }
     }
 }
