@@ -52,8 +52,18 @@ namespace mrs.Controllers
                 var usr = mrs.Users.Where(u=>u.EmailAddress == user.EmailAddress && u.Password == user.Password).FirstOrDefault();
                 if (usr != null)
                 {
-                    TempData["Id"] = usr.Id.ToString();
-                    TempData["EmailAddress"] = usr.EmailAddress.ToString();
+                    HttpContext.Session.SetString("Id", usr.Id.ToString());
+
+                    //TempData["Id"] = usr.Id.ToString();
+                    //TempData["EmailAddress"] = usr.EmailAddress.ToString();
+                    //TempData["FirstName"] = usr.FirstName.ToString();
+                    //TempData["LastName"] = usr.LastName.ToString();
+                    //TempData["Password"] = usr.Password.ToString();
+                    //TempData["ConfirmPassword"] = usr.ConfirmPassword.ToString();
+                    //TempData["Phone"] = usr.Phone.ToString();
+                    //TempData["Town"] = usr.Town.ToString();
+
+
                     return RedirectToAction("LoggedIn");
                 }
                 else
@@ -92,6 +102,63 @@ namespace mrs.Controllers
                 TempData["Id"]= user.Id.ToString();
                 TempData["EmailAddress"]= user.EmailAddress.ToString();
                 return RedirectToAction("LoggedIn");
+            }
+            return View();
+        }
+
+        //public ActionResult Profil()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Profil(User user)
+        {
+            MrsContext mrs = new MrsContext();
+            int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+                var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
+            TempData["User"]=usr;
+
+            if (HttpContext.Session.GetString("Id") != null)
+            {
+                return View(usr);
+            }
+            return Login();
+        }
+
+        //public ActionResult Edit()
+        //{
+        //    return View();
+        //}
+        
+        public ActionResult Edit()
+        {
+            //if (ModelState.IsValid)
+            //{
+            //using (MrsContext mrs = new MrsContext())
+            //{
+
+            //    if (user.EmailAddress != null && user.EmailAddress != "" && user.Password != null && user.Password != "")
+            //        mrs.SaveChanges();
+            //    return RedirectToAction("Profil");
+            //}
+
+            //}
+            var usr = TempData["User"];
+            return View(usr);
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                using (MrsContext mrs = new MrsContext())
+                {
+                    if (user.EmailAddress != null && user.EmailAddress!="" && user.Password!=null && user.Password!="")
+                        mrs.SaveChanges();
+                    return RedirectToAction("Profil");
+                }
             }
             return View();
         }

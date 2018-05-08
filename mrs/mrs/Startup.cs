@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using mrs.ApplicationCore.Interfaces;
@@ -58,6 +59,8 @@ namespace mrs
             services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            services.AddMemoryCache();
             services.AddSession();
             services.AddMvc();
 

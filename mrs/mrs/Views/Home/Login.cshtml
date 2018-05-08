@@ -30,8 +30,9 @@
 </div>
 
 <div>
-    <a asp-action="Register">Registruj se</a><br />
-  @*  <input type="submit" value="Facebook" class="btn btn-default" onclick="InitialiseFacebook()" />*@
+    @*<a asp-action="Register">Registruj se</a><br />*@
+    <a asp-area="" asp-controller="Home" asp-action="Register">Registruj se</a>
+    @*  <input type="submit" value="Facebook" class="btn btn-default" onclick="InitialiseFacebook()" />*@
     <h2>Part 1 - Facebook Login Button</h2>
 
     <fb:login-button autologoutlink="true" perms="read_friendlists, create_event, email, publish_stream"></fb:login-button>
