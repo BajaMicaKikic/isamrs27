@@ -30,23 +30,12 @@
 </div>
 
 <div>
-    @*<a asp-action="Register">Registruj se</a><br />*@
+
     <a asp-area="" asp-controller="Home" asp-action="Register">Registruj se</a>
-    @*  <input type="submit" value="Facebook" class="btn btn-default" onclick="InitialiseFacebook()" />*@
-    <h2>Part 1 - Facebook Login Button</h2>
 
-    <fb:login-button autologoutlink="true" perms="read_friendlists, create_event, email, publish_stream"></fb:login-button>
-
-    <p>Facebook Access Token: @TempData["accessToken"]</p>
-    <p>Facebook User Id: @TempData["uid"]</p>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="@Url.Content("~/js/Facebook.js")" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(function () {
-            InitialiseFacebook();//inicijalizacija za ucitavanje stranice
-        });
-    </script>
+   
 }
