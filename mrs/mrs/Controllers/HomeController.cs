@@ -44,18 +44,19 @@ namespace mrs.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Login(User user)
         {
-            using(MrsContext mrs=new MrsContext())
+            using (MrsContext mrs = new MrsContext())
             {
-                var usr = mrs.Users.Where(u=>u.EmailAddress == user.EmailAddress && u.Password == user.Password).FirstOrDefault();
+                var usr = mrs.Users.Where(u => u.EmailAddress == user.EmailAddress && u.Password == user.Password).FirstOrDefault();
                 if (usr != null)
                 {
                     HttpContext.Session.SetString("Id", usr.Id.ToString());
 
-                    //TempData["Id"] = usr.Id.ToString();
-                    //TempData["EmailAddress"] = usr.EmailAddress.ToString();
+                    TempData["Id"] = usr.Id.ToString();
+                    TempData["EmailAddress"] = usr.EmailAddress.ToString();
                     //TempData["FirstName"] = usr.FirstName.ToString();
                     //TempData["LastName"] = usr.LastName.ToString();
                     //TempData["Password"] = usr.Password.ToString();
@@ -75,11 +76,12 @@ namespace mrs.Controllers
         }
         public ActionResult LoggedIn()
         {
-            if (HttpContext.Session.GetString("Id")!=null)
+            if (HttpContext.Session.GetString("Id") != null)
             {
                 return View();
             }
             return Login();
+
         }
         public ActionResult Register()
         {
@@ -98,7 +100,7 @@ namespace mrs.Controllers
                     mrs.SaveChanges();
                 }
                 ModelState.Clear();
-                // ViewBag.Message = user.FirstName + " " + user.LastName + " successfully registered.";
+                 ViewBag.Message = user.FirstName + " " + user.LastName + " successfully registered.";
                 TempData["Id"]= user.Id.ToString();
                 TempData["EmailAddress"]= user.EmailAddress.ToString();
                 return RedirectToAction("LoggedIn");
@@ -115,8 +117,8 @@ namespace mrs.Controllers
         {
             MrsContext mrs = new MrsContext();
             int idUser = int.Parse(HttpContext.Session.GetString("Id"));
-                var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
-            TempData["User"]=usr;
+            var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
+            TempData["User"] = usr;
 
             if (HttpContext.Session.GetString("Id") != null)
             {
@@ -132,6 +134,9 @@ namespace mrs.Controllers
         
         public ActionResult Edit()
         {
+            MrsContext mrs = new MrsContext();
+            int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+            var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
             //if (ModelState.IsValid)
             //{
             //using (MrsContext mrs = new MrsContext())
@@ -143,8 +148,10 @@ namespace mrs.Controllers
             //}
 
             //}
-            var usr = TempData["User"];
+            
             return View(usr);
+           
+            
         }
 
 
@@ -155,20 +162,29 @@ namespace mrs.Controllers
             {
                 using (MrsContext mrs = new MrsContext())
                 {
-                    if (user.EmailAddress != null && user.EmailAddress!="" && user.Password!=null && user.Password!="")
-                        mrs.SaveChanges();
+                    //  if (user.EmailAddress != null && user.EmailAddress != "" && user.Password != null && user.Password != "")
+                    int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+                    user.Id = idUser;
+                    mrs.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    
+                    user.AccountId = 1;
+                   // user.Account.Equals("korisnik").ToString();
+                //    user.Id.Equals(mrs.Use)
+                //user.Account.Equals()
+                //user.Account.Equals()
+                    mrs.SaveChanges();
                     return RedirectToAction("Profil");
                 }
             }
-            return View();
+            return View(user);
         }
 
         public ActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        [HttpPost]
 
+        [HttpPost]
         public JsonResult FacebookLogin(FacebookLoginModel model)
         {
             TempData["uid"] = model.uid.ToString();
