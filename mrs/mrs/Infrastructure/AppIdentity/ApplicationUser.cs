@@ -1,4 +1,4 @@
-﻿namespace mrs.Infrastructure
+﻿namespace mrs.Infrastructure.AppIdentity
 {
     using Microsoft.AspNetCore.Identity;
 

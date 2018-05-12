@@ -1,10 +1,15 @@
 ﻿namespace mrs
 {
+    using System;
     using System.IO;
     using System.Reflection;
     using System.Xml;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.Extensions.DependencyInjection;
+    using mrs.Infrastructure.AppIdentity;
+    using mrs.Infrastructure.Data;
 
     public class Program
     {
@@ -13,16 +18,32 @@
         public static void Main(string[] args)
         {
 
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var mrsContext = services.GetRequiredService<MrsContext>();
+                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    AppIdentityDbContextSeed.SeedAsync(userManager).Wait();
+                }
+                catch (Exception ex)
+                {
+                    // TODO: Logging
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+                }
+            }
+
             XmlDocument log4netConfig = new XmlDocument();
             log4netConfig.Load(File.OpenRead("log4net.config"));
-
             var repo = log4net.LogManager.CreateRepository(
                 Assembly.GetEntryAssembly(), typeof(log4net.Repository.Hierarchy.Hierarchy));
-
             log4net.Config.XmlConfigurator.Configure(repo, log4netConfig["log4net"]);
-
             log.Info("Application - Main is invoked");
-            BuildWebHost(args).Run();
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
