@@ -22,38 +22,49 @@ namespace mrs.Controllers
             _userRepository = userRepository;
         }
 
-        public IActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public ActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public ActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
             return View();
         }
-        public IActionResult Login()
+        public ActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Login(User user)
+        public ActionResult Login(User user)
         {
-            using(MrsContext mrs=new MrsContext())
+            using (MrsContext mrs = new MrsContext())
             {
-                var usr = mrs.Users.Where(u=>u.EmailAddress == user.EmailAddress && u.Password == user.Password).FirstOrDefault();
+                var usr = mrs.Users.Where(u => u.EmailAddress == user.EmailAddress && u.Password == user.Password).FirstOrDefault();
                 if (usr != null)
                 {
-                    HttpContext.Session.SetString("Id",usr.Id.ToString());
-                    HttpContext.Session.SetString("EmailAddress", usr.EmailAddress.ToString());
+                    HttpContext.Session.SetString("Id", usr.Id.ToString());
+
+                    TempData["Id"] = usr.Id.ToString();
+                    TempData["EmailAddress"] = usr.EmailAddress.ToString();
+                    //TempData["FirstName"] = usr.FirstName.ToString();
+                    //TempData["LastName"] = usr.LastName.ToString();
+                    //TempData["Password"] = usr.Password.ToString();
+                    //TempData["ConfirmPassword"] = usr.ConfirmPassword.ToString();
+                    //TempData["Phone"] = usr.Phone.ToString();
+                    //TempData["Town"] = usr.Town.ToString();
+
+
                     return RedirectToAction("LoggedIn");
                 }
                 else
@@ -63,38 +74,116 @@ namespace mrs.Controllers
             }
             return View();
         }
-        public IActionResult LoggedIn()
+        public ActionResult LoggedIn()
         {
-            if (HttpContext.Session.GetString("Id")!=null)
+            if (HttpContext.Session.GetString("Id") != null)
             {
                 return View();
             }
             return Login();
+
         }
-        public IActionResult Register()
+        public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register(User user)
+        public ActionResult Register(User user)
         {
             if (ModelState.IsValid)
             {
+                user.AccountId = 1;
                 using(MrsContext mrs=new MrsContext())
                 {
                     mrs.Users.Add(user);
                     mrs.SaveChanges();
                 }
                 ModelState.Clear();
-                ViewBag.Message = user.FirstName + " " + user.LastName + " successfully registered.";
+                 ViewBag.Message = user.FirstName + " " + user.LastName + " successfully registered.";
+                TempData["Id"]= user.Id.ToString();
+                TempData["EmailAddress"]= user.EmailAddress.ToString();
+                return RedirectToAction("LoggedIn");
             }
             return View();
         }
 
-        public IActionResult Error()
+        //public ActionResult Profil()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Profil(User user)
+        {
+            MrsContext mrs = new MrsContext();
+            int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+            var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
+            TempData["User"] = usr;
+
+            if (HttpContext.Session.GetString("Id") != null)
+            {
+                return View(usr);
+            }
+            return Login();
+        }
+
+        //public ActionResult Edit()
+        //{
+        //    return View();
+        //}
+        
+        public ActionResult Edit()
+        {
+            MrsContext mrs = new MrsContext();
+            int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+            var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
+            //if (ModelState.IsValid)
+            //{
+            //using (MrsContext mrs = new MrsContext())
+            //{
+
+            //    if (user.EmailAddress != null && user.EmailAddress != "" && user.Password != null && user.Password != "")
+            //        mrs.SaveChanges();
+            //    return RedirectToAction("Profil");
+            //}
+
+            //}
+            
+            return View(usr);
+           
+            
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                using (MrsContext mrs = new MrsContext())
+                {
+                    //  if (user.EmailAddress != null && user.EmailAddress != "" && user.Password != null && user.Password != "")
+                    int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+                    user.Id = idUser;
+                    mrs.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    
+                    user.AccountId = 1;
+                   // user.Account.Equals("korisnik").ToString();
+                //    user.Id.Equals(mrs.Use)
+                //user.Account.Equals()
+                //user.Account.Equals()
+                    mrs.SaveChanges();
+                    return RedirectToAction("Profil");
+                }
+            }
+            return View(user);
+        }
+
+        public ActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }

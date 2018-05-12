@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace mrs.ApplicationCore.Entities
 {
@@ -21,6 +22,8 @@ namespace mrs.ApplicationCore.Entities
         /// <value>
         /// The first name.
         /// </value>
+        /// 
+        [Required]
         public string FirstName { get; set; }
         /// <summary>
         /// Gets or sets the last name.
@@ -28,6 +31,7 @@ namespace mrs.ApplicationCore.Entities
         /// <value>
         /// The last name.
         /// </value>
+        [Required]
         public string LastName { get; set; }
         /// <summary>
         /// Gets or sets the email address.
@@ -35,6 +39,7 @@ namespace mrs.ApplicationCore.Entities
         /// <value>
         /// The email address.
         /// </value>
+        [Required]
         public string EmailAddress { get; set; }
         /// <summary>
         /// Gets or sets the account identifier.
@@ -42,20 +47,14 @@ namespace mrs.ApplicationCore.Entities
         /// <value>
         /// The account identifier.
         /// </value>
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        /// <summary>
-        /// Gets or sets the confirm password.
-        /// </summary>
-        /// <value>
-        /// The confirm password.
-        /// </value>
-        public string ConfirmPassword { get; set; }// TODO: Stefan Kikic: Check purpose of this attribute!
-        /// <summary>
-        /// Gets or sets the account identifier.
-        /// </summary>
-        /// <value>
-        /// The account identifier.
-        /// </value>
+        public string ConfirmPassword { get; set; }
+
+        public string Town { get; set; }
+        public string Phone { get; set; }
+
         public long AccountId { get; set; }
         /// <summary>
         /// Gets or sets the account.

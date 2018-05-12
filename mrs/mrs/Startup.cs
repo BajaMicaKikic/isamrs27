@@ -1,21 +1,14 @@
-﻿namespace mrs
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using mrs.ApplicationCore.Interfaces;
+using mrs.ApplicationCore.Interfaces.Repository;
+using mrs.Infrastructure.Data;
+using mrs.Infrastructure.Data.Repository;
+
+namespace mrs
 {
-    using global::Infrastructure.AppIdentity;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using mrs.ApplicationCore.Interfaces;
-    using mrs.ApplicationCore.Interfaces.Repository;
-    using mrs.Infrastructure.AppIdentity;
-    using mrs.Infrastructure.Data;
-    using mrs.Infrastructure.Data.Repository;
-    using System;
-    /// <summary>
-    /// Startup class.
-    /// </summary>
     public class Startup
     {
         /// <summary>
@@ -120,6 +113,9 @@
             services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddMvc();
 
             _services = services;
@@ -143,8 +139,6 @@
             }
 
             app.UseStaticFiles();
-
-            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
