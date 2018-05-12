@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Infrastructure.AppIdentity;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using mrs.ApplicationCore.Interfaces;
 using mrs.ApplicationCore.Interfaces.Repository;
+using mrs.Infrastructure.AppIdentity;
 using mrs.Infrastructure.Data;
 using mrs.Infrastructure.Data.Repository;
+using System;
 
 namespace mrs
 {
