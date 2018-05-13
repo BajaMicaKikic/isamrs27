@@ -13,35 +13,68 @@
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
     using mrs.Services;
+    /// <summary>
+    /// Class that contains account data management logic.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Authorize]
     [Route("[controller]/[action]")]
     public class ManageController : Controller
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<ApplicationUser> _userManager;
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
         private readonly SignInManager<ApplicationUser> _signInManager;
+        /// <summary>
+        /// The email sender
+        /// </summary>
         private readonly IEmailSender _emailSender;
-        private readonly IAppLogger<ManageController> _logger;
+        //private readonly IAppLogger<ManageController> _logger;        
+        /// <summary>
+        /// The URL encoder
+        /// </summary>
         private readonly UrlEncoder _urlEncoder;
-
+        /// <summary>
+        /// The authenicator URI format
+        /// </summary>
         private const string AuthenicatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ManageController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="signInManager">The sign in manager.</param>
+        /// <param name="emailSender">The email sender.</param>
+        /// <param name="urlEncoder">The URL encoder.</param>
         public ManageController(
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
           IEmailSender emailSender,
-          IAppLogger<ManageController> logger,
+          /*IAppLogger<ManageController> logger,*/
           UrlEncoder urlEncoder)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _logger = logger;
+            //_logger = logger;
             _urlEncoder = urlEncoder;
         }
-
+        /// <summary>
+        /// Gets or sets the status message.
+        /// </summary>
+        /// <value>
+        /// The status message.
+        /// </value>
         [TempData]
         public string StatusMessage { get; set; }
-
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -62,7 +95,13 @@
 
             return View(model);
         }
-
+        /// <summary>
+        /// Indexes the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">
+        /// </exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(IndexViewModel model)
@@ -101,7 +140,12 @@
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Sends the verification email.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendVerificationEmail(IndexViewModel model)
@@ -125,7 +169,11 @@
             StatusMessage = "Verification email sent. Please check your email.";
             return RedirectToAction(nameof(Index));
         }
-
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         public async Task<IActionResult> ChangePassword()
         {
@@ -144,7 +192,12 @@
             var model = new ChangePasswordViewModel { StatusMessage = StatusMessage };
             return View(model);
         }
-
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -168,12 +221,16 @@
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            _logger.LogInformation("User changed their password successfully.");
+            //_logger.LogInformation("User changed their password successfully.");
             StatusMessage = "Your password has been changed.";
 
             return RedirectToAction(nameof(ChangePassword));
         }
-
+        /// <summary>
+        /// Sets the password.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         public async Task<IActionResult> SetPassword()
         {
@@ -193,7 +250,12 @@
             var model = new SetPasswordViewModel { StatusMessage = StatusMessage };
             return View(model);
         }
-
+        /// <summary>
+        /// Sets the password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
@@ -221,7 +283,11 @@
 
             return RedirectToAction(nameof(SetPassword));
         }
-
+        /// <summary>
+        /// Externals the logins.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         public async Task<IActionResult> ExternalLogins()
         {
@@ -240,7 +306,11 @@
 
             return View(model);
         }
-
+        /// <summary>
+        /// Links the login.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LinkLogin(string provider)
@@ -253,7 +323,12 @@
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
             return new ChallengeResult(provider, properties);
         }
-
+        /// <summary>
+        /// Links the login callback.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">
+        /// </exception>
         [HttpGet]
         public async Task<IActionResult> LinkLoginCallback()
         {
@@ -281,7 +356,13 @@
             StatusMessage = "The external login was added.";
             return RedirectToAction(nameof(ExternalLogins));
         }
-
+        /// <summary>
+        /// Removes the login.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">
+        /// </exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel model)
@@ -302,7 +383,11 @@
             StatusMessage = "The external login was removed.";
             return RedirectToAction(nameof(ExternalLogins));
         }
-
+        /// <summary>
+        /// Twoes the factor authentication.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         public async Task<IActionResult> TwoFactorAuthentication()
         {
@@ -321,7 +406,12 @@
 
             return View(model);
         }
-
+        /// <summary>
+        /// Disable2fas the warning.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">
+        /// </exception>
         [HttpGet]
         public async Task<IActionResult> Disable2faWarning()
         {
@@ -338,7 +428,12 @@
 
             return View(nameof(Disable2fa));
         }
-
+        /// <summary>
+        /// Disable2fas this instance.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">
+        /// </exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Disable2fa()
@@ -355,10 +450,14 @@
                 throw new ApplicationException($"Unexpected error occured disabling 2FA for user with ID '{user.Id}'.");
             }
 
-            _logger.LogInformation("User with ID {UserId} has disabled 2fa.", user.Id);
+            //_logger.LogInformation("User with ID {UserId} has disabled 2fa.", user.Id);
             return RedirectToAction(nameof(TwoFactorAuthentication));
         }
-
+        /// <summary>
+        /// Enables the authenticator.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         public async Task<IActionResult> EnableAuthenticator()
         {
@@ -383,7 +482,12 @@
 
             return View(model);
         }
-
+        /// <summary>
+        /// Enables the authenticator.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableAuthenticator(EnableAuthenticatorViewModel model)
@@ -412,16 +516,23 @@
             }
 
             await _userManager.SetTwoFactorEnabledAsync(user, true);
-            _logger.LogInformation("User with ID {UserId} has enabled 2FA with an authenticator app.", user.Id);
+            //_logger.LogInformation("User with ID {UserId} has enabled 2FA with an authenticator app.", user.Id);
             return RedirectToAction(nameof(GenerateRecoveryCodes));
         }
-
+        /// <summary>
+        /// Resets the authenticator warning.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ResetAuthenticatorWarning()
         {
             return View(nameof(ResetAuthenticator));
         }
-
+        /// <summary>
+        /// Resets the authenticator.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetAuthenticator()
@@ -434,11 +545,16 @@
 
             await _userManager.SetTwoFactorEnabledAsync(user, false);
             await _userManager.ResetAuthenticatorKeyAsync(user);
-            _logger.LogInformation("User with id '{UserId}' has reset their authentication app key.", user.Id);
+            //_logger.LogInformation("User with id '{UserId}' has reset their authentication app key.", user.Id);
 
             return RedirectToAction(nameof(EnableAuthenticator));
         }
-
+        /// <summary>
+        /// Generates the recovery codes.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">
+        /// </exception>
         [HttpGet]
         public async Task<IActionResult> GenerateRecoveryCodes()
         {
@@ -456,11 +572,14 @@
             var recoveryCodes = await _userManager.GenerateNewTwoFactorRecoveryCodesAsync(user, 10);
             var model = new GenerateRecoveryCodesViewModel { RecoveryCodes = recoveryCodes.ToArray() };
 
-            _logger.LogInformation("User with ID {UserId} has generated new 2FA recovery codes.", user.Id);
+            //_logger.LogInformation("User with ID {UserId} has generated new 2FA recovery codes.", user.Id);
 
             return View(model);
         }
-
+        /// <summary>
+        /// Adds the errors.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -468,7 +587,11 @@
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
-
+        /// <summary>
+        /// Formats the key.
+        /// </summary>
+        /// <param name="unformattedKey">The unformatted key.</param>
+        /// <returns></returns>
         private string FormatKey(string unformattedKey)
         {
             var result = new StringBuilder();
@@ -485,7 +608,12 @@
 
             return result.ToString().ToLowerInvariant();
         }
-
+        /// <summary>
+        /// Generates the qr code URI.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <param name="unformattedKey">The unformatted key.</param>
+        /// <returns></returns>
         private string GenerateQrCodeUri(string email, string unformattedKey)
         {
             return string.Format(

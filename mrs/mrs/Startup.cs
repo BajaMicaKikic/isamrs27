@@ -123,7 +123,9 @@ namespace mrs
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+
             services.AddMemoryCache();
+
             services.AddSession();
             services.AddMvc();
 
@@ -141,13 +143,16 @@ namespace mrs
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
+            app.UseAuthentication();
+            
 
             app.UseMvc(routes =>
             {

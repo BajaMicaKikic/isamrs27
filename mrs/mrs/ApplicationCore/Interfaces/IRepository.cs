@@ -1,8 +1,7 @@
-﻿using mrs.ApplicationCore.Entities;
-using System.Collections.Generic;
-
-namespace mrs.ApplicationCore.Interfaces
+﻿namespace mrs.ApplicationCore.Interfaces
 {
+    using mrs.ApplicationCore.Entities;
+    using System.Collections.Generic;
     /// <summary>
     /// Interface of methods signatures.
     /// </summary>

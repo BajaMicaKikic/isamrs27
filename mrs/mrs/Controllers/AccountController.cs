@@ -8,15 +8,28 @@
     using mrs.ViewModels.Account;
     using System;
     using System.Threading.Tasks;
-
+    /// <summary>
+    /// Class that represent account logic.
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Route("[controller]/[action]")]
     [Authorize]
     public class AccountController : Controller
     {
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly UserManager<ApplicationUser> _userManager;
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
         private readonly SignInManager<ApplicationUser> _signInManager;
-        //private readonly IAppLogger<AccountController> _logger;
-
+        //private readonly IAppLogger<AccountController> _logger;        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// </summary>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="signInManager">The sign in manager.</param>
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager
@@ -27,8 +40,12 @@
             _signInManager = signInManager;
             //_logger = logger;
         }
-
-        // GET: /Account/SignIn 
+        // GET: /Account/SignIn         
+        /// <summary>
+        /// Signs the in.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> SignIn(string returnUrl = null)
@@ -41,10 +58,15 @@
             {
                 ViewData["ReturnUrl"] = "/Home/Index";
             }
-           
-            return View();
+           return View();
         }
-        // POST: /Account/SignIn
+        // POST: /Account/SignIn        
+        /// <summary>
+        /// Signs the in.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -68,13 +90,19 @@
                 {
                     Response.Cookies.Delete(Constants.CULTURE_COOKIENAME);
                 }
-              
+                //return RedirectToAction(nameof(ManageController.Index), "Manage");
                 return RedirectToLocal(returnUrl);
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(model);
         }
-
+        /// <summary>
+        /// Logins the with2fa.
+        /// </summary>
+        /// <param name="rememberMe">if set to <c>true</c> [remember me].</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
@@ -92,7 +120,14 @@
 
             return View(model);
         }
-
+        /// <summary>
+        /// Logins the with2fa.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="rememberMe">if set to <c>true</c> [remember me].</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -130,14 +165,20 @@
                 return View();
             }
         }
-
+        /// <summary>
+        /// Lockouts this instance.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Lockout()
         {
             return View();
         }
-
+        /// <summary>
+        /// Represents an event that is raised when the sign-out operation is complete.
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SignOut()
@@ -146,13 +187,21 @@
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
-
+        /// <summary>
+        /// Registers this instance.
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
-
+        /// <summary>
+        /// Registers the specified model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -172,7 +221,13 @@
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        /// <summary>
+        /// Confirms the email.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="code">The code.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException"></exception>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -189,7 +244,12 @@
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
-
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">A code must be supplied for password reset.</exception>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
@@ -201,7 +261,11 @@
             var model = new ResetPasswordViewModel { Code = code };
             return View(model);
         }
-
+        /// <summary>
+        /// Redirects to local.
+        /// </summary>
+        /// <param name="returnUrl">The return URL.</param>
+        /// <returns></returns>
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -214,7 +278,10 @@
 
             }
         }
-
+        /// <summary>
+        /// Adds the errors.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
