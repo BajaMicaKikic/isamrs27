@@ -1,4 +1,4 @@
-﻿namespace Microsoft.eShopWeb.ViewModels.Manage
+﻿namespace mrs.ViewModels.Manage
 {
     public class GenerateRecoveryCodesViewModel
     {

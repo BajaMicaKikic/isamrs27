@@ -41,7 +41,7 @@
             {
                 ViewData["ReturnUrl"] = "/Home/Index";
             }
-
+           
             return View();
         }
         // POST: /Account/SignIn
@@ -68,6 +68,7 @@
                 {
                     Response.Cookies.Delete(Constants.CULTURE_COOKIENAME);
                 }
+              
                 return RedirectToLocal(returnUrl);
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -143,7 +144,7 @@
         {
             await _signInManager.SignOutAsync();
 
-            return RedirectToAction(nameof(HomeController.Index), "Catalog");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         [AllowAnonymous]
@@ -210,6 +211,7 @@
             else
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
+
             }
         }
 

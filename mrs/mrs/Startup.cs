@@ -11,6 +11,7 @@ using mrs.ApplicationCore.Interfaces.Repository;
 using mrs.Infrastructure.AppIdentity;
 using mrs.Infrastructure.Data;
 using mrs.Infrastructure.Data.Repository;
+using mrs.Infrastructure.Services;
 using System;
 
 namespace mrs
@@ -118,6 +119,8 @@ namespace mrs
             services.AddScoped<IRemarkRepository, RemarkRepository>();
             services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
             services.AddMemoryCache();

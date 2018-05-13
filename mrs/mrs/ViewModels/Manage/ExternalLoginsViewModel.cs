@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
-namespace Microsoft.eShopWeb.ViewModels.Manage
+namespace mrs.ViewModels.Manage
 {
     public class ExternalLoginsViewModel
     {

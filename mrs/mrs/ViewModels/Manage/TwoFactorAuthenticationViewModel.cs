@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Microsoft.eShopWeb.ViewModels.Manage
+namespace mrs.ViewModels.Manage
 {
     public class TwoFactorAuthenticationViewModel
     {

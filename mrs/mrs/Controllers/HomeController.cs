@@ -40,6 +40,7 @@ namespace mrs.Controllers
 
             return View();
         }
+
         public ActionResult Login()
         {
             return View();
@@ -74,6 +75,7 @@ namespace mrs.Controllers
             }
             return View();
         }
+
         public ActionResult LoggedIn()
         {
             if (HttpContext.Session.GetString("Id") != null)
@@ -83,6 +85,7 @@ namespace mrs.Controllers
             return Login();
 
         }
+
         public ActionResult Register()
         {
             return View();
@@ -153,7 +156,6 @@ namespace mrs.Controllers
            
             
         }
-
 
         [HttpPost]
         public ActionResult Edit(User user)

@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Microsoft.eShopWeb.ViewModels.Manage
+﻿namespace mrs.ViewModels.Manage
 {
+    using System.ComponentModel.DataAnnotations;
     public class IndexViewModel
     {
         public string Username { get; set; }
