@@ -7,16 +7,15 @@
     using System;
 
     /// <summary>
-    /// 
+    /// DB context for account management data.
     /// </summary>
-    public class AppIdentityDbContext : IdentityDbContext<ApplicationUser>
+    public class AppIdentityDbContext : IdentityDbContext<ApplicationUser,AppRole,string,AppUserClaim,AppUserRole,AppUserLogin,AppRoleClaim,AppUserToken>
     {
-        
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(Program));
         /// <summary>
         /// The connection string
         /// </summary>
-        private string connString = "server=localhost;database=idn;uid=root;password=1234;SslMode=none;charset=utf8;";
+        private string connString = "server=localhost;database=idn;uid=root;password=1234;SslMode=none;";
         /// <summary>
         /// 
         /// </summary>
@@ -26,6 +25,55 @@
         {
             Database.EnsureCreated();
         }
+        /// <summary>
+        /// Gets or sets the application users.
+        /// </summary>
+        /// <value>
+        /// The application users.
+        /// </value>
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        /// <summary>
+        /// Gets or sets the application roles.
+        /// </summary>
+        /// <value>
+        /// The application roles.
+        /// </value>
+        public DbSet<AppRole> AppRoles { get; set; }
+        /// <summary>
+        /// Gets or sets the application role claims.
+        /// </summary>
+        /// <value>
+        /// The application role claims.
+        /// </value>
+        public DbSet<AppRoleClaim> AppRoleClaims { get; set; }
+        /// <summary>
+        /// Gets or sets the appp user claims.
+        /// </summary>
+        /// <value>
+        /// The appp user claims.
+        /// </value>
+        public DbSet<AppUserClaim> ApppUserClaims { get; set; }
+        /// <summary>
+        /// Gets or sets the application user logins.
+        /// </summary>
+        /// <value>
+        /// The application user logins.
+        /// </value>
+        public DbSet<AppUserLogin> AppUserLogins { get; set; }
+        /// <summary>
+        /// Gets or sets the application user roles.
+        /// </summary>
+        /// <value>
+        /// The application user roles.
+        /// </value>
+        public DbSet<AppUserRole> AppUserRoles { get; set; }
+        /// <summary>
+        /// Gets or sets the application user tokens.
+        /// </summary>
+        /// <value>
+        /// The application user tokens.
+        /// </value>
+        public DbSet<AppUserToken> AppUserTokens { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -58,12 +106,12 @@
             modelBuilder.Entity("mrs.Infrastructure.AppIdentity.ApplicationUser", b =>
             {
                 b.Property<string>("Id")
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedOnAdd().HasMaxLength(256);
 
                 b.Property<int>("AccessFailedCount");
 
                 b.Property<string>("ConcurrencyStamp")
-                    .IsConcurrencyToken();
+                    .IsConcurrencyToken().HasMaxLength(256);
 
                 b.Property<string>("Email")
                     .HasMaxLength(256);
@@ -80,13 +128,13 @@
                 b.Property<string>("NormalizedUserName")
                     .HasMaxLength(256);
 
-                b.Property<string>("PasswordHash");
+                b.Property<string>("PasswordHash").HasMaxLength(256);
 
-                b.Property<string>("PhoneNumber");
+                b.Property<string>("PhoneNumber").HasMaxLength(256);
 
                 b.Property<bool>("PhoneNumberConfirmed");
 
-                b.Property<string>("SecurityStamp");
+                b.Property<string>("SecurityStamp").HasMaxLength(256);
 
                 b.Property<bool>("TwoFactorEnabled");
 
@@ -105,10 +153,10 @@
                 b.ToTable("AspNetUsers");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
+            modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppRole", b =>
             {
                 b.Property<string>("Id")
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedOnAdd().HasMaxLength(256);
 
                 b.Property<string>("ConcurrencyStamp")
                     .IsConcurrencyToken();
@@ -128,7 +176,7 @@
                 b.ToTable("AspNetRoles");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppRoleClaim", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd();
@@ -147,7 +195,7 @@
                 b.ToTable("AspNetRoleClaims");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserClaim", b =>
             {
                 b.Property<int>("Id")
                     .ValueGeneratedOnAdd();
@@ -166,11 +214,11 @@
                 b.ToTable("AspNetUserClaims");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserLogin", b =>
             {
-                b.Property<string>("LoginProvider");
+                b.Property<string>("LoginProvider").HasMaxLength(256);
 
-                b.Property<string>("ProviderKey");
+                b.Property<string>("ProviderKey").HasMaxLength(256); ;
 
                 b.Property<string>("ProviderDisplayName");
 
@@ -184,11 +232,11 @@
                 b.ToTable("AspNetUserLogins");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserRole", b =>
             {
-                b.Property<string>("UserId");
+                b.Property<string>("UserId").HasMaxLength(256);
 
-                b.Property<string>("RoleId");
+                b.Property<string>("RoleId").HasMaxLength(256);
 
                 b.HasKey("UserId", "RoleId");
 
@@ -199,13 +247,13 @@
                 b.ToTable("AspNetUserRoles");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserToken", b =>
             {
-                b.Property<string>("UserId");
+                b.Property<string>("UserId").HasMaxLength(256);
 
-                b.Property<string>("LoginProvider");
+                b.Property<string>("LoginProvider").HasMaxLength(256);
 
-                b.Property<string>("Name");
+                b.Property<string>("Name").HasMaxLength(256);
 
                 b.Property<string>("Value");
 
@@ -214,43 +262,43 @@
                 b.ToTable("AspNetUserTokens");
             });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
-            {
-                b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
-                    .WithMany("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>")
-                    .HasForeignKey("RoleId")
-                    .OnDelete(DeleteBehavior.Cascade);
-            });
+              modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppRoleClaim", b =>
+              {
+                  b.HasOne("mrs.Infrastructure.AppIdentity.AppRole")
+                      .WithMany()
+                      .HasForeignKey("RoleId")
+                      .OnDelete(DeleteBehavior.Cascade);
+              });
 
-            //modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
-            //{
-            //    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
-            //        .WithMany("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>")
-            //        .HasForeignKey("RoleId")
-            //        .OnDelete(DeleteBehavior.Cascade);
+              modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserRole", b =>
+              {
+                  b.HasOne("mrs.Infrastructure.AppIdentity.AppRole")
+                      .WithMany()
+                      .HasForeignKey("RoleId")
+                      .OnDelete(DeleteBehavior.Cascade);
 
-            //    b.HasOne("mrs.Infrastructure.AppIdentity.ApplicationUser")
-            //        .WithMany("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>")
-            //        .HasForeignKey("UserId")
-            //        .OnDelete(DeleteBehavior.Cascade);
-            //});
+                  b.HasOne("mrs.Infrastructure.AppIdentity.ApplicationUser")
+                      .WithMany()
+                      .HasForeignKey("UserId")
+                      .OnDelete(DeleteBehavior.Cascade);
+              });
 
-            //modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
-            //{
-            //    b.HasOne("mrs.Infrastructure.AppIdentity.ApplicationUser")
-            //        .WithMany("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>")
-            //        .HasForeignKey("UserId")
-            //        .OnDelete(DeleteBehavior.Cascade);
-            //});
+              modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserLogin", b =>
+              {
+                  b.HasOne("mrs.Infrastructure.AppIdentity.ApplicationUser")
+                      .WithMany()
+                      .HasForeignKey("UserId")
+                      .OnDelete(DeleteBehavior.Cascade);
+              });
 
-            //modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
-            //{
-            //    b.HasOne("mrs.Infrastructure.AppIdentity.ApplicationUser")
-            //        .WithMany("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>")
-            //        .HasForeignKey("UserId")
-            //        .OnDelete(DeleteBehavior.Cascade);
-            //});
-
+              modelBuilder.Entity("mrs.Infrastructure.AppIdentity.AppUserClaim", b =>
+              {
+                  b.HasOne("mrs.Infrastructure.AppIdentity.ApplicationUser")
+                      .WithMany()
+                      .HasForeignKey("UserId")
+                      .OnDelete(DeleteBehavior.Cascade);
+              });
+              
             base.OnModelCreating(modelBuilder);
         }
     }

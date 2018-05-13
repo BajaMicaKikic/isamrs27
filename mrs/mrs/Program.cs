@@ -27,7 +27,9 @@
                 {
                     var mrsContext = services.GetRequiredService<MrsContext>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    AppIdentityDbContextSeed.SeedAsync(userManager).Wait();
+                    var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
+
+                    AppIdentityDbContextSeed.SeedAsync(userManager,roleManager).Wait();
                 }
                 catch (Exception ex)
                 {
