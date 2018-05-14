@@ -8,8 +8,10 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.Infrastructure.AppIdentity;
     using mrs.Infrastructure.Data;
+    using mrs.Infrastructure.Data.Repository;
 
     public class Program
     {
@@ -29,7 +31,12 @@
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
 
+                    var projectionRepository = services.GetRequiredService<IProjectionRepository>();
+                    var genreRepository = services.GetRequiredService<IGenreRepository>();
+                    var actorRepository = services.GetRequiredService<IActorRepository>();
+                    var cultureObjectRepository = services.GetRequiredService<ICultureObjectRepository>(); 
                     AppIdentityDbContextSeed.SeedAsync(userManager,roleManager).Wait();
+                    MrsContextDbContextSeed.SeedAsync(projectionRepository, genreRepository, actorRepository,cultureObjectRepository).Wait();
                 }
                 catch (Exception ex)
                 {

@@ -48,6 +48,13 @@
         /// </value>
         public decimal Duration { get; set; }
         /// <summary>
+        /// Gets or sets the poster.
+        /// </summary>
+        /// <value>
+        /// The poster.
+        /// </value>
+        //public byte[] Poster { get; set; }
+        /// <summary>
         /// Gets or sets the short descirption.
         /// </summary>
         /// <value>
@@ -68,7 +75,19 @@
         /// The actor.
         /// </value>
         public Actor Actor { get; set; }
+        /// <summary>
+        /// Gets or sets the type of the projection.
+        /// </summary>
+        /// <value>
+        /// The type of the projection.
+        /// </value>
+        public ProjectionType ProjectionType { get; set; }
     }
- 
+
+    public enum ProjectionType
+    {
+        Play = 1,
+        Movie = 2
+    }
 }
 

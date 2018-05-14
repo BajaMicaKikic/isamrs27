@@ -6,7 +6,7 @@
     /// </summary>
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IRepository{mrs.ApplicationCore.Entities.CultureObject}" />
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IAsyncRepository{mrs.ApplicationCore.Entities.CultureObject}" />
-    interface ICultureObjectRepository :IRepository<CultureObject>,IAsyncRepository<CultureObject>
+    public interface ICultureObjectRepository :IRepository<CultureObject>,IAsyncRepository<CultureObject>
     {
         // Add method signature.
     }

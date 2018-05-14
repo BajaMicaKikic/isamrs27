@@ -6,7 +6,7 @@
     /// </summary>
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IRepository{mrs.ApplicationCore.Entities.Genre}" />
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IAsyncRepository{mrs.ApplicationCore.Entities.Genre}" />
-    interface IGenreRepository :IRepository<Genre>,IAsyncRepository<Genre>
+    public interface IGenreRepository :IRepository<Genre>,IAsyncRepository<Genre>
     {
         // Add method signature
     }

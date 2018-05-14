@@ -90,7 +90,6 @@
                 {
                     Response.Cookies.Delete(Constants.CULTURE_COOKIENAME);
                 }
-                //return RedirectToAction(nameof(ManageController.Index), "Manage");
                 return RedirectToLocal(returnUrl);
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
