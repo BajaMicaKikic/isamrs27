@@ -127,7 +127,8 @@ namespace mrs
             services.AddMemoryCache();
 
             services.AddSession();
-            services.AddMvc();
+            services.AddMvc()
+                .AddSessionStateTempDataProvider();
 
             _services = services;
         }
@@ -152,6 +153,8 @@ namespace mrs
             }
             app.UseStaticFiles();
             app.UseAuthentication();
+            app.UseSession();
+
             
 
             app.UseMvc(routes =>
