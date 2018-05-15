@@ -1,0 +1,55 @@
+﻿@model mrs.ViewModels.CultureObjectsHome.CinemasViewModel
+
+@{
+    ViewData["Title"] = "Cinemas";
+}
+
+<h2>
+    @ViewData["object"];
+</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @{ViewData["object"].ToString();} name
+            </th>
+            <th>
+                @{ViewData["object"].ToString();} Address
+            </th>
+            <th>
+                @{ViewData["object"].ToString();} PromoDescription
+            </th>
+            <th>
+                @{ViewData["object"].ToString();} Remark
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Items) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PromoDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -12,6 +12,8 @@ using mrs.Infrastructure.AppIdentity;
 using mrs.Infrastructure.Data;
 using mrs.Infrastructure.Data.Repository;
 using mrs.Infrastructure.Services;
+using mrs.Interfaces;
+using mrs.Services;
 using System;
 
 namespace mrs
@@ -119,6 +121,10 @@ namespace mrs
             services.AddScoped<IRemarkRepository, RemarkRepository>();
             services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IProjectionViewModelService, ProjectionViewModelService>();
+
+            services.AddScoped<ICultureObjectViewModelService, CultureObjectViewModelService>();
 
             services.AddTransient<IEmailSender, EmailSender>();
 

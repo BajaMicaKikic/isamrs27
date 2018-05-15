@@ -6,7 +6,7 @@
     /// </summary>
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IRepository{mrs.ApplicationCore.Entities.Projection}" />
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IAsyncRepository{mrs.ApplicationCore.Entities.Projection}" />
-    interface IProjectionRepository :IRepository<Projection>,IAsyncRepository<Projection>
+    public interface IProjectionRepository :IRepository<Projection>,IAsyncRepository<Projection>
     {
         // Add method signatures.
     }
