@@ -2,9 +2,15 @@
 {
     using mrs.ViewModels.CultureObjectsHome;
     using System.Threading.Tasks;
-
+    /// <summary>
+    /// Interface for Projection View Model Service methods.
+    /// </summary>
     public interface IProjectionViewModelService
     {
-        Task<MoviesViewModel> GetAllMoviesForUnregisteredUsers();
+        /// <summary>
+        /// Gets all movies for unregistered users.
+        /// </summary>
+        /// <returns></returns>
+        Task<MoviesViewModel> GetAllProjectionsForUnregisteredUsers();
     }
 }

@@ -17,6 +17,10 @@
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(Program));
 
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
 
@@ -34,9 +38,23 @@
                     var projectionRepository = services.GetRequiredService<IProjectionRepository>();
                     var genreRepository = services.GetRequiredService<IGenreRepository>();
                     var actorRepository = services.GetRequiredService<IActorRepository>();
-                    var cultureObjectRepository = services.GetRequiredService<ICultureObjectRepository>(); 
+                    var cultureObjectRepository = services.GetRequiredService<ICultureObjectRepository>();
+                    var hallSegmentRepository = services.GetRequiredService<IHallSegmentRepository>();
+                    var cultureObjectHallRepository = services.GetRequiredService<ICultureObjectHallRepository>();
+                    var screeningRepository = services.GetRequiredService<IScreeningRepository>();
+                    var seatRepository = services.GetRequiredService<ISeatRepository>();
+                    var seatReservationRepository = services.GetRequiredService<ISeatReservationRepository>();
+
                     AppIdentityDbContextSeed.SeedAsync(userManager,roleManager).Wait();
-                    MrsContextDbContextSeed.SeedAsync(projectionRepository, genreRepository, actorRepository,cultureObjectRepository).Wait();
+                    MrsContextDbContextSeed.SeedAsync(projectionRepository,
+                                                      genreRepository,
+                                                      actorRepository,
+                                                      cultureObjectRepository,
+                                                      hallSegmentRepository,
+                                                      cultureObjectHallRepository,
+                                                      screeningRepository,
+                                                      seatRepository,
+                                                      seatReservationRepository).Wait();
                 }
                 catch (Exception ex)
                 {

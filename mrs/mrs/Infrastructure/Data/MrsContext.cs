@@ -44,7 +44,21 @@
         /// <value>
         /// The culture objects.
         /// </value>
-        public DbSet<User> CultureObjects { get; set; }
+        public DbSet<CultureObject> CultureObjects { get; set; }
+        /// <summary>
+        /// Gets or sets the culture object halls.
+        /// </summary>
+        /// <value>
+        /// The culture object halls.
+        /// </value>
+        public DbSet<CultureObjectHall> CultureObjectHalls { get; set; }
+        /// <summary>
+        /// Gets or sets the hall segments.
+        /// </summary>
+        /// <value>
+        /// The hall segments.
+        /// </value>
+        public DbSet<HallSegment> HallSegments { get; set; } 
         /// <summary>
         /// Gets or sets the genres.
         /// </summary>
@@ -72,7 +86,28 @@
         /// <value>
         /// The remarks.
         /// </value>
-        public DbSet<User> Remarks { get; set; }
+        public DbSet<Remark> Remarks { get; set; }
+        /// <summary>
+        /// Gets or sets the screenings.
+        /// </summary>
+        /// <value>
+        /// The screenings.
+        /// </value>
+        public DbSet<Screening> Screenings { get; set; }
+        /// <summary>
+        /// Gets or sets the seats.
+        /// </summary>
+        /// <value>
+        /// The seats.
+        /// </value>
+        public DbSet<Seat> Seats { get; set; }
+        /// <summary>
+        /// Gets or sets the seat reservations.
+        /// </summary>
+        /// <value>
+        /// The seat reservations.
+        /// </value>
+        public DbSet<SeatReservation> SeatReservations { get; set; }
         /// <summary>
         /// Gets or sets the thematic props.
         /// </summary>
@@ -130,10 +165,15 @@
             modelBuilder.ApplyConfiguration(new AccountMap());
             modelBuilder.ApplyConfiguration(new ActorMap());
             modelBuilder.ApplyConfiguration(new CultureObjectMap());
+            modelBuilder.ApplyConfiguration(new CultureObjectHallMap());
+            modelBuilder.ApplyConfiguration(new HallSegmentMap());
             modelBuilder.ApplyConfiguration(new GenreMap());
             modelBuilder.ApplyConfiguration(new ProjectionMap());
             modelBuilder.ApplyConfiguration(new PropAdMap());
             modelBuilder.ApplyConfiguration(new RemarkMap());
+            modelBuilder.ApplyConfiguration(new ScreeningMap());
+            modelBuilder.ApplyConfiguration(new SeatMap());
+            modelBuilder.ApplyConfiguration(new SeatReservationMap());
             modelBuilder.ApplyConfiguration(new ThematicPropMap());
             modelBuilder.ApplyConfiguration(new UserMap());
             base.OnModelCreating(modelBuilder);

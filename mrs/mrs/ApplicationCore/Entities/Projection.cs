@@ -1,5 +1,6 @@
 ﻿namespace mrs.ApplicationCore.Entities
 {
+    using System.Collections.Generic;
     /// <summary>
     /// Class that represents cinema projections and theater plays. 
     /// </summary>
@@ -82,6 +83,21 @@
         /// The type of the projection.
         /// </value>
         public ProjectionType ProjectionType { get; set; }
+        /// <summary>
+        /// The screenings
+        /// </summary>
+        private List<Screening> _screenings = new List<Screening>();
+        /// <summary>
+        /// Gets or sets the screenings.
+        /// </summary>
+        /// <value>
+        /// The screenings.
+        /// </value>
+        public ICollection<Screening> Screenings
+        {
+            get { return _screenings; }
+            set { _screenings = (List<Screening>)value; }
+        }
     }
 
     public enum ProjectionType

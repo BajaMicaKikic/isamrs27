@@ -7,37 +7,55 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Linq;
-
+    /// <summary>
+    /// Class that contains logic for Projection view Model Service.
+    /// </summary>
+    /// <seealso cref="mrs.Interfaces.IProjectionViewModelService" />
     public class ProjectionViewModelService:IProjectionViewModelService
     {
-        private readonly IAsyncRepository<Projection> _movieRepository;
-
+        /// <summary>
+        /// The projection repository
+        /// </summary>
+        private readonly IAsyncRepository<Projection> _projectionRepository;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectionViewModelService"/> class.
+        /// </summary>
+        /// <param name="movieRepository">The movie repository.</param>
         public ProjectionViewModelService(IAsyncRepository<Projection> movieRepository)
         {
-            _movieRepository = movieRepository;
+            _projectionRepository = movieRepository;
         }
-
-        public async Task<MoviesViewModel> GetAllMoviesForUnregisteredUsers()
+        /// <summary>
+        /// Gets all movies for unregistered users.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<MoviesViewModel> GetAllProjectionsForUnregisteredUsers()
         {
-            var movies = await _movieRepository.ListAllAsync();
-            var viewModel = await CreateViewModelFromMovies(movies);
+            var movies = await _projectionRepository.ListAllAsync();
+            var viewModel = CreateViewModelFromProjections(movies);
             return viewModel;
         }
-
-        private async Task<MoviesViewModel> CreateViewModelFromMovies(List<Projection> movies)
+        /// <summary>
+        /// Creates the view model from projections.
+        /// </summary>
+        /// <param name="projections">The projections.</param>
+        /// <returns></returns>
+        private MoviesViewModel CreateViewModelFromProjections(List<Projection> projections)
         {
-            var viewModel = new MoviesViewModel();
-            viewModel.Items = movies.Where(i => i.ProjectionType == ProjectionType.Movie).Select(i =>
+            var viewModel = new MoviesViewModel
             {
-                var itemModel = new MovieItemViewModel
+                Items = projections.Where(i => i.ProjectionType == ProjectionType.Movie).Select(i =>
                 {
-                    Id = i.Id,
-                    MovieName = i.ProjectionName,
-                    MovieShortDescription = i.ShortDescirption
-                };
-                return itemModel;
-            }
-            ).ToList();
+                    var itemModel = new MovieItemViewModel
+                    {
+                        Id = i.Id,
+                        MovieName = i.ProjectionName,
+                        MovieShortDescription = i.ShortDescirption
+                    };
+                    return itemModel;
+                }
+            ).ToList()
+            };
 
             return viewModel;
         }

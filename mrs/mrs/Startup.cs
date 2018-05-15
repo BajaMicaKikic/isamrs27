@@ -111,7 +111,7 @@ namespace mrs
 
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
-
+            // Repository Services
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IActorRepository, ActorRepository>();
             services.AddScoped<ICultureObjectRepository, CultureObjectRepository>();
@@ -121,9 +121,14 @@ namespace mrs
             services.AddScoped<IRemarkRepository, RemarkRepository>();
             services.AddScoped<IThematicPropRepository, ThematicPropRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<ICultureObjectHallRepository, CultureObjectHallRepository>();
+            services.AddScoped<IHallSegmentRepository, HallSegmentRepository>();
+            services.AddScoped<IScreeningRepository, ScreeningRepository>();
+            services.AddScoped<ISeatRepository, SeatRepository>();
+            services.AddScoped<ISeatReservationRepository, SeatReservationRepository>();
+            
+            // Bussiness Logic Services
             services.AddScoped<IProjectionViewModelService, ProjectionViewModelService>();
-
             services.AddScoped<ICultureObjectViewModelService, CultureObjectViewModelService>();
 
             services.AddTransient<IEmailSender, EmailSender>();

@@ -5,7 +5,7 @@
 }
 
 <h2>
-    @ViewData["object"];
+    @ViewData["object"]
 </h2>
 
 <p>
@@ -15,16 +15,16 @@
     <thead>
         <tr>
             <th>
-                @{ViewData["object"].ToString();} name
+                 Name
             </th>
             <th>
-                @{ViewData["object"].ToString();} Address
+                 Address
             </th>
             <th>
-                @{ViewData["object"].ToString();} PromoDescription
+                 PromoDescription
             </th>
             <th>
-                @{ViewData["object"].ToString();} Remark
+                 Remark
             </th>
             <th></th>
         </tr>
@@ -45,9 +45,7 @@
                 @Html.DisplayFor(modelItem => item.Remark)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Projections", "Projections","CultureObjectsHome",item.Id) |
             </td>
         </tr>
 }

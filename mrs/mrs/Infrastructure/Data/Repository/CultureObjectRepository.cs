@@ -3,7 +3,7 @@
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
     /// <summary>
-    /// Class for CultureObjrct Repository pattern. 
+    /// Class for CultureObject Repository pattern. 
     /// </summary>
     /// <seealso cref="mrs.Infrastructure.Data.EfRepository{mrs.ApplicationCore.Entities.CultureObject}" />
     /// <seealso cref="mrs.ApplicationCore.Interfaces.Repository.ICultureObjectRepository" />

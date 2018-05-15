@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using mrs.ApplicationCore.Entities;
-
-namespace mrs.Infrastructure.Data.Mapping
+﻿namespace mrs.Infrastructure.Data.Mapping
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using mrs.ApplicationCore.Entities;
+
     public class CultureObjectMap : IEntityTypeConfiguration<CultureObject>
     {
         public void Configure(EntityTypeBuilder<CultureObject> builder)
