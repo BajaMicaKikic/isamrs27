@@ -15,7 +15,7 @@
         /// <summary>
         /// The connection string
         /// </summary>
-        private string connString = "server=localhost;database=idn;uid=root;password=1234;SslMode=none;";
+        private string connString = "server=127.0.0.1;database=mrs;uid=root;SslMode=none;";
         /// <summary>
         /// 
         /// </summary>
