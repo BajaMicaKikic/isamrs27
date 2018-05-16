@@ -4,14 +4,16 @@
     using System.IO;
     using System.Reflection;
     using System.Xml;
+    using global::Infrastructure.AppIdentity;
     using Microsoft.AspNetCore;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Storage;
     using Microsoft.Extensions.DependencyInjection;
     using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.Infrastructure.AppIdentity;
     using mrs.Infrastructure.Data;
-    using mrs.Infrastructure.Data.Repository;
 
     public class Program
     {
@@ -32,6 +34,8 @@
                 try
                 {
                     var mrsContext = services.GetRequiredService<MrsContext>();
+                    var idnContext = services.GetRequiredService<AppIdentityDbContext>();
+
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
 
@@ -44,9 +48,13 @@
                     var screeningRepository = services.GetRequiredService<IScreeningRepository>();
                     var seatRepository = services.GetRequiredService<ISeatRepository>();
                     var seatReservationRepository = services.GetRequiredService<ISeatReservationRepository>();
-
-                    AppIdentityDbContextSeed.SeedAsync(userManager,roleManager).Wait();
-                    MrsContextDbContextSeed.SeedAsync(projectionRepository,
+                    if ((idnContext.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
+                    {
+                        AppIdentityDbContextSeed.SeedAsync(userManager, roleManager).Wait();
+                    }
+                    if ((mrsContext.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
+                    {
+                        MrsContextDbContextSeed.SeedAsync(projectionRepository,
                                                       genreRepository,
                                                       actorRepository,
                                                       cultureObjectRepository,
@@ -55,6 +63,8 @@
                                                       screeningRepository,
                                                       seatRepository,
                                                       seatReservationRepository).Wait();
+                    }
+                    
                 }
                 catch (Exception ex)
                 {

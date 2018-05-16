@@ -130,11 +130,8 @@ namespace mrs
             // Bussiness Logic Services
             services.AddScoped<IProjectionViewModelService, ProjectionViewModelService>();
             services.AddScoped<ICultureObjectViewModelService, CultureObjectViewModelService>();
-
             services.AddTransient<IEmailSender, EmailSender>();
-
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
-
             services.AddMemoryCache();
 
             services.AddSession();
@@ -165,8 +162,6 @@ namespace mrs
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseSession();
-
-            
 
             app.UseMvc(routes =>
             {

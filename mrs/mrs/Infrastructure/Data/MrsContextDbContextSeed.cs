@@ -3,6 +3,7 @@
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
     using System.Threading.Tasks;
+    using System.Linq;
 
     public class MrsContextDbContextSeed
     {
@@ -59,7 +60,11 @@
             var seatReservation1 = new SeatReservation { Screening = screening1, Seat = seat1 };
             var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat2 };
             var seatReservation3 = new SeatReservation { Screening = screening1, Seat = seat3 };
-            
+
+            if (genreRepository.ListAll().FirstOrDefault().GenreName == genre1.GenreName)
+            {
+                return;
+            }
             await genreRepository.AddAsync(genre1);
             await genreRepository.AddAsync(genre2);
             await genreRepository.AddAsync(genre3);
@@ -81,13 +86,14 @@
             await cultureObjectRepository.AddAsync(cultureObject7);
             await cultureObjectRepository.AddAsync(cultureObject8);
 
-            await hallSegmentRepository.AddAsync(hallSegment1);
-            await hallSegmentRepository.AddAsync(hallSegment2);
-            await hallSegmentRepository.AddAsync(hallSegment3);
-
+            
             await cultureObjectHallRepository.AddAsync(hall1);
             await cultureObjectHallRepository.AddAsync(hall2);
             await cultureObjectHallRepository.AddAsync(hall3);
+
+            await hallSegmentRepository.AddAsync(hallSegment1);
+            await hallSegmentRepository.AddAsync(hallSegment2);
+            await hallSegmentRepository.AddAsync(hallSegment3);
 
             await screeningRepository.AddAsync(screening1);
 

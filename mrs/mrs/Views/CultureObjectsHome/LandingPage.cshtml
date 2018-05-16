@@ -2,24 +2,35 @@
 @{
     ViewData["Title"] = "View";
 }
-<div class="col-md-10 col-md-offset-1">
-    <div class="col-md-2">
-        <a href='@Url.Action("CinemasAsync", "CultureObjectsHome")'>
-            <img src="~/images/CinemaIcon.png" />
-        </a>
+<div class="container">
+    <div class="col-md-12 col-lg-12 row">
+        <div class="col-md-6 col-lg-6">
+            @*<a href='@Url.Action("CinemasAsync", "CultureObjectsHome")'>
+                <img src="~/images/CinemaIcon.png" />
+            </a>*@
+            <div class="btn-lg btn-info">
+                <a href='@Url.Action("CinemasAsync", "CultureObjectsHome")'>
+                    CINEMAS
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+            @*<a href='@Url.Action("TheatersAsync", "CultureObjectsHome")'>
+                <img src="~/images/TheaterIcon.png" />
+            </a>*@
+            <div class="btn-lg btn-info">
+                <a href='@Url.Action("TheatersAsync", "CultureObjectsHome")'>
+                    THEATERS
+                </a>
+            </div>
+        </div>
+
     </div>
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-2">
-        <a href='@Url.Action("TheatersAsync", "CultureObjectsHome")'>
-            <img src="~/images/TheaterIcon.png" />
-        </a>
-    </div>
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-1 btn-info">
-        <a href='@Url.Action("Login", "Home")'>
-            LOGIN
-        </a>
+    <div class="row text-justify">
+        <div class="btn-lg btn-info">
+            <a href='@Url.Action("Login", "Home")'>
+                LOGIN
+            </a>
+        </div>
     </div>
 </div>
