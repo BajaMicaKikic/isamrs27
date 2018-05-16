@@ -98,6 +98,12 @@
             get { return _screenings; }
             set { _screenings = (List<Screening>)value; }
         }
+        private List<CultureObject> _cultureObjects = new List<CultureObject>();
+        public ICollection<CultureObject> CultureObjects
+        {
+            get { return _cultureObjects;}
+            set { _cultureObjects = (List<CultureObject>)value; }
+        }
     }
 
     public enum ProjectionType

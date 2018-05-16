@@ -58,6 +58,13 @@ namespace mrs.ApplicationCore.Entities
             set { _remarks = (List<Remark>)value; }
         }
 
+        private List<Projection> _projections = new List<Projection>();
+        public ICollection<Projection> Projections
+        {
+            get { return _projections; }
+            set { _projections=(List<Projection>)value; }
+        }
+
     }
     /// <summary>
     /// Enum Theater/Cinema
