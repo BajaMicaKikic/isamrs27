@@ -20,7 +20,7 @@ namespace mrs.Infrastructure.Data.Mapping
             //builder.Property(p => p.Poster).HasColumnName("Poster").IsRequired(false);
             builder.Property(p => p.ShortDescirption).HasColumnName("ShortDescription").IsUnicode().IsRequired();
             builder.Property(p => p.ProjectionType).HasColumnName("ProjectionType").IsRequired();
-            builder.Property(p => p.CultureObjectId).HasColumnName("CultureObjectId").IsRequired(); 
+          //  builder.Property(p => p.CultureObjectId).HasColumnName("CultureObjectId").IsRequired(); 
             //Relations
             builder.HasOne(p => p.Actor)
                .WithMany(a => a.Projections)
@@ -30,9 +30,9 @@ namespace mrs.Infrastructure.Data.Mapping
                 .WithMany(g => g.Projections)
                 .HasForeignKey(p => p.GenreId);
 
-            builder.HasOne(p => p.CultureObject)
-               .WithMany(c => c.Projections)
-               .HasForeignKey(p => p.CultureObjectId);
+            //builder.HasOne(p => p.CultureObjects)
+            //   .WithMany(c => c.Projections)
+            //   .HasForeignKey(p => p.CultureObjectId);
             //Table
             builder.ToTable("Projections");
         }

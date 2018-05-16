@@ -100,12 +100,12 @@
             get { return _screenings; }
             set { _screenings = (List<Screening>)value; }
         }
-        private List<CultureObject> _cultureObjects = new List<CultureObject>();
-        public virtual ICollection<CultureObject> CultureObject
-        {
-            get { return _cultureObjects;}
-            set { _cultureObjects = (List<CultureObject>)value; }
-        }
+        //private List<CultureObject> _cultureObjects = new List<CultureObject>();
+        //public virtual ICollection<CultureObject> CultureObject
+        //{
+        //    get { return _cultureObjects;}
+        //    set { _cultureObjects = (List<CultureObject>)value; }
+        //}
     }
 
     public enum ProjectionType

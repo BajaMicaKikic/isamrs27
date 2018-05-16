@@ -58,13 +58,13 @@ namespace mrs.ApplicationCore.Entities
             set { _remarks = (List<Remark>)value; }
         }
 
-        private List<Projection> _projections = new List<Projection>();
+        //private List<Projection> _projections = new List<Projection>();
 
-        public virtual ICollection<Projection> Projections
-        {
-            get { return _projections; }
-            set { _projections=(List<Projection>)value; }
-        }
+        //public virtual ICollection<Projection> Projections
+        //{
+        //    get { return _projections; }
+        //    set { _projections=(List<Projection>)value; }
+        //}
 
     }
     /// <summary>
