@@ -59,7 +59,8 @@ namespace mrs.ApplicationCore.Entities
         }
 
         private List<Projection> _projections = new List<Projection>();
-        public ICollection<Projection> Projections
+
+        public virtual ICollection<Projection> Projections
         {
             get { return _projections; }
             set { _projections=(List<Projection>)value; }

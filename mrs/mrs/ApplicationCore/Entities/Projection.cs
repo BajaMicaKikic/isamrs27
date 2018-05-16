@@ -27,6 +27,8 @@
         /// The actor identifier.
         /// </value>
         public long ActorId { get; set; }
+
+        public long CultureObjectId { get; set; }
         /// <summary>
         /// Gets or sets the genre identifier.
         /// </summary>
@@ -99,7 +101,7 @@
             set { _screenings = (List<Screening>)value; }
         }
         private List<CultureObject> _cultureObjects = new List<CultureObject>();
-        public ICollection<CultureObject> CultureObjects
+        public virtual ICollection<CultureObject> CultureObject
         {
             get { return _cultureObjects;}
             set { _cultureObjects = (List<CultureObject>)value; }
