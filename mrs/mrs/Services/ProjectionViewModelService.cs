@@ -18,17 +18,17 @@
         /// <summary>
         /// The projection repository
         /// </summary>
-        private readonly IAsyncRepository<Projection> _projectionRepository;
-        private readonly ICultureObjectRepository _cultureObjectRepository;
+        private readonly IScreeningRepository _screeningRepository;
+        private readonly ICultureObjectHallRepository _cultureObjectHallRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectionViewModelService"/> class.
         /// </summary>
-        /// <param name="movieRepository">The movie repository.</param>
-        public ProjectionViewModelService(IAsyncRepository<Projection> movieRepository, ICultureObjectRepository cultureObjectRepository)
+        /// <param name="screeningRepository">The movie repository.</param>
+        public ProjectionViewModelService(IScreeningRepository screeningRepository, ICultureObjectHallRepository cultureObjectRepository)
         {
-            _projectionRepository = movieRepository;
-            _cultureObjectRepository = cultureObjectRepository;
+            _screeningRepository = screeningRepository;
+            _cultureObjectHallRepository = cultureObjectRepository;
         }
         /// <summary>
         /// Gets all movies for unregistered users.
@@ -36,8 +36,13 @@
         /// <returns></returns>
         public async Task<MoviesViewModel> GetAllProjectionsForUnregisteredUsers(long cultureObjectId)
         {
-            var movies = await _cultureObjectRepository.GetProjByCulObjIdAsync(cultureObjectId);
-            var viewModel = CreateViewModelFromProjections(movies);
+            var screenings = await _cultureObjectHallRepository.GetProjByCulObjIdAsync(cultureObjectId);
+            var projections = new List<Projection>();
+            foreach (var screening in screenings)
+            {
+                projections.Add(_screeningRepository.GetAllProjsByScreenId(screening.Id));
+            }
+            var viewModel = CreateViewModelFromProjections(projections);
             return viewModel;
         }
         /// <summary>

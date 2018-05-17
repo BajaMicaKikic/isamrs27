@@ -12,7 +12,7 @@
     public interface ICultureObjectRepository :IRepository<CultureObject>,IAsyncRepository<CultureObject>
     {
         // Add method signature.
-        Task<List<Projection>> GetProjByCulObjIdAsync(long id);
+        //Task<List<Projection>> GetProjByCulObjIdAsync(long id);
 
     }
 }

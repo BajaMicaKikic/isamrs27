@@ -1,6 +1,8 @@
 ﻿namespace mrs.ApplicationCore.Interfaces.Repository
 {
     using mrs.ApplicationCore.Entities;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Interface for Screening Repository pattern.
     /// </summary>
@@ -9,6 +11,6 @@
     public interface IScreeningRepository : IRepository<Screening>, IAsyncRepository<Screening>
     {
         // Add method signatures.
-
+        Projection GetAllProjsByScreenId(long screeningId);
     }
 }

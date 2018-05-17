@@ -1,8 +1,6 @@
 ﻿namespace mrs.ApplicationCore.Interfaces.Repository
 {
     using mrs.ApplicationCore.Entities;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Interface for Projection Repository pattern.
@@ -12,6 +10,5 @@
     public interface IProjectionRepository :IRepository<Projection>,IAsyncRepository<Projection>
     {
         // Add method signatures.
-        //Task<List<Projection>> GetAllProjsByCulObjIdAsync(long cultureObjectId);
     }
 }

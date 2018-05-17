@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Linq;
+    using mrs.ApplicationCore.Specification;
 
     /// <summary>
     /// Class for CultureObject Repository pattern. 
@@ -22,22 +23,22 @@
 
         }
 
-        public async Task<List<Projection>> GetProjByCulObjIdAsync(long id)
-        {
-            var culObj = await GetByIdAsync(id);
-            var culObjHalls = culObj.CultureObjectHalls;
-            var screenings = new List<Screening>();
-            foreach (var hall in culObjHalls)
-            {
-                screenings.AddRange(hall.Screenings);
-            }
-            var projections = new List<Projection>();
-            foreach (var screening in screenings)
-            {
-                projections.Add(screening.Projection);
-            }
-            projections = projections.Distinct().ToList();
-            return projections;
-        }
+        //public async Task<List<Projection>> GetProjByCulObjIdAsync(long id)
+        //{
+        //    var culObj = await ListAsync(new CultureObjectHallSpecification(id));
+        //    var culObjHalls = culObj.CultureObjectHalls;
+        //    var screenings = new List<Screening>();
+        //    foreach (var hall in culObjHalls)
+        //    {
+        //        screenings.AddRange(hall.Screenings);
+        //    }
+        //    var projections = new List<Projection>();
+        //    foreach (var screening in screenings)
+        //    {
+        //        projections.Add(screening.Projection);
+        //    }
+        //    projections = projections.Distinct().ToList();
+        //    return projections;
+        //}
     }
 }

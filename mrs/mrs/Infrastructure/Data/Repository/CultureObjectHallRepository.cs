@@ -2,6 +2,11 @@
 {
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
+    using mrs.ApplicationCore.Specification;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Class for CultureObjectHall Repository pattern. 
     /// </summary>
@@ -16,6 +21,16 @@
         public CultureObjectHallRepository(MrsContext dbContext) : base(dbContext)
         {
 
+        }
+        public async Task<List<Screening>> GetProjByCulObjIdAsync(long id)
+        {
+            var culObjHalls = await ListAsync(new CultureObjectHallSpecification(id));
+            var screenings = new List<Screening>();
+            foreach (var hall in culObjHalls)
+            {
+                screenings.AddRange(hall.Screenings);
+            }
+            return screenings;
         }
     }
 }

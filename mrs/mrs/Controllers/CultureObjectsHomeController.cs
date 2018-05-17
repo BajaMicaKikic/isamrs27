@@ -98,7 +98,6 @@
 
             return View("Projections", model);
         }
-
         /// <summary>
         /// Gets the movies view model asynchronous.
         /// </summary>
