@@ -35,7 +35,6 @@
                 {
                     var mrsContext = services.GetRequiredService<MrsContext>();
                     var idnContext = services.GetRequiredService<AppIdentityDbContext>();
-
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
 

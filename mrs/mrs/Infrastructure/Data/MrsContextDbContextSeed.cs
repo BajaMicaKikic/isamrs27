@@ -41,11 +41,11 @@
             var projection = new Projection { ProjectionName = "Titanik", Actor = actor1, Duration = decimal.Parse("123.34"), Genre = genre3, ProducerName = "James Cameron", ProjectionType = ProjectionType.Movie, ShortDescirption = "Description" };
 
            
-            var hall1 = new CultureObjectHall { HallName = "Mira Stupica", SeatsNo = 1000 };
-            var hall2 = new CultureObjectHall { HallName = "Main Hall", SeatsNo = 1300 };
-            var hall3 = new CultureObjectHall { HallName = "Private Hall", SeatsNo = 150 };
+            var hall1 = new CultureObjectHall { HallName = "Mira Stupica", SeatsNo = 1000, CultureObject = cultureObject1 };
+            var hall2 = new CultureObjectHall { HallName = "Main Hall", SeatsNo = 1300, CultureObject = cultureObject1 };
+            var hall3 = new CultureObjectHall { HallName = "Private Hall", SeatsNo = 150, CultureObject = cultureObject1 };
 
-            var hallSegment1 = new HallSegment { HallSegmentName = "Balkon", SeatsNo = 100, CultureObjecsHall = hall1 };
+            var hallSegment1 = new HallSegment { HallSegmentName = "Balkon", SeatsNo = 100, CultureObjecsHall = hall1   };
             var hallSegment2 = new HallSegment { HallSegmentName = "Parter", SeatsNo = 500, CultureObjecsHall = hall1 };
             var hallSegment3 = new HallSegment { HallSegmentName = "VIP", SeatsNo = 40, CultureObjecsHall = hall1 };
 
@@ -61,10 +61,6 @@
             var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat2 };
             var seatReservation3 = new SeatReservation { Screening = screening1, Seat = seat3 };
 
-            if (genreRepository.ListAll().FirstOrDefault().GenreName == genre1.GenreName)
-            {
-                return;
-            }
             await genreRepository.AddAsync(genre1);
             await genreRepository.AddAsync(genre2);
             await genreRepository.AddAsync(genre3);

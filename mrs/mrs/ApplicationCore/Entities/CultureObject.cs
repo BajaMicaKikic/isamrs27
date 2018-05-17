@@ -57,15 +57,21 @@ namespace mrs.ApplicationCore.Entities
             get { return _remarks; }
             set { _remarks = (List<Remark>)value; }
         }
-
-        //private List<Projection> _projections = new List<Projection>();
-
-        //public virtual ICollection<Projection> Projections
-        //{
-        //    get { return _projections; }
-        //    set { _projections=(List<Projection>)value; }
-        //}
-
+        /// <summary>
+        /// The culture object halls
+        /// </summary>
+        private List<CultureObjectHall> _cultureObjectHalls = new List<CultureObjectHall>();
+        /// <summary>
+        /// Gets or sets the culture object halls.
+        /// </summary>
+        /// <value>
+        /// The culture object halls.
+        /// </value>
+        public ICollection<CultureObjectHall> CultureObjectHalls
+        {
+            get { return _cultureObjectHalls; }
+            set { _cultureObjectHalls = (List<CultureObjectHall>)value; }
+        }
     }
     /// <summary>
     /// Enum Theater/Cinema

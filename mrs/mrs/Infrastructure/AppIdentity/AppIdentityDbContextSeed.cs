@@ -24,10 +24,6 @@
             var defaultRole4 = new AppRole { Name = "Registered User" };
             var defaultRole5 = new AppRole { Name = "Unregistered User" };
             var defaultUser = new ApplicationUser { UserName = "demouser@microsoft.com", Email = "demouser@microsoft.com", EmailConfirmed = true, PhoneNumberConfirmed = true  };
-            if (userManager.Users.FirstOrDefault().UserName == defaultUser.UserName)
-            {
-                return;
-            }
             await roleManager.CreateAsync(defaultRole1);
             await roleManager.CreateAsync(defaultRole2);
             await roleManager.CreateAsync(defaultRole3);

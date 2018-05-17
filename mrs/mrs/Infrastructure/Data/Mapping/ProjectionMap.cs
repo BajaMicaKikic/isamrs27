@@ -20,7 +20,7 @@ namespace mrs.Infrastructure.Data.Mapping
             //builder.Property(p => p.Poster).HasColumnName("Poster").IsRequired(false);
             builder.Property(p => p.ShortDescirption).HasColumnName("ShortDescription").IsUnicode().IsRequired();
             builder.Property(p => p.ProjectionType).HasColumnName("ProjectionType").IsRequired();
-          //  builder.Property(p => p.CultureObjectId).HasColumnName("CultureObjectId").IsRequired(); 
+            //builder.Property(p => p.CultureObjectId).HasColumnName("CultureObjectId").IsRequired(); 
             //Relations
             builder.HasOne(p => p.Actor)
                .WithMany(a => a.Projections)

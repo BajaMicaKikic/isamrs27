@@ -1,6 +1,9 @@
 ﻿namespace mrs.ApplicationCore.Interfaces.Repository
 {
     using mrs.ApplicationCore.Entities;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Interface for Culture Object Repository pattern.
     /// </summary>
@@ -9,5 +12,7 @@
     public interface ICultureObjectRepository :IRepository<CultureObject>,IAsyncRepository<CultureObject>
     {
         // Add method signature.
+        Task<List<Projection>> GetProjByCulObjIdAsync(long id);
+
     }
 }

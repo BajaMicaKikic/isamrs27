@@ -12,8 +12,13 @@
             builder.HasKey(coh => coh.Id);
             //Properties
             builder.Property(coh => coh.Id).ValueGeneratedOnAdd().HasColumnName("CultureObjectHallId").IsRequired();
+            builder.Property(coh => coh.CultureObjectId).HasColumnName("CultureObjectId").IsRequired();
             builder.Property(coh => coh.HallName).HasColumnName("CultureObjectHallName").IsUnicode().IsRequired();
-            builder.Property(co => co.SeatsNo).HasColumnName("SeatsNumber").IsRequired();
+            builder.Property(coh => coh.SeatsNo).HasColumnName("SeatsNumber").IsRequired();
+            //Relations
+            builder.HasOne(coh => coh.CultureObject)
+               .WithMany(co => co.CultureObjectHalls)
+               .HasForeignKey(coh => coh.CultureObjectId);
             //Table
             builder.ToTable("CultureObjectHall");
         }

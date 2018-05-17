@@ -2,6 +2,10 @@
 {
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Linq;
+
     /// <summary>
     /// Class for Projection Repository pattern. 
     /// </summary>
@@ -15,7 +19,11 @@
         /// <param name="dbContext">The database context.</param>
         public ProjectionRepository(MrsContext dbContext) : base(dbContext)
         {
-
+            
         }
+        //public Task<List<Projection>> GetAllProjsByCulObjIdAsync(long cultureObjectId)
+        //{
+        //    var screeningRepository = new ScreeningRepository();
+        //}
     }
 }

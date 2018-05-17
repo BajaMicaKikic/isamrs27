@@ -10,7 +10,9 @@
 
         public string HallName { get; set; }
         public int SeatsNo { get; set; }
+        public long CultureObjectId { get; set; }
 
+        public CultureObject CultureObject { get; set; }
         private List<HallSegment> _hallSegment = new List<HallSegment>();
         public ICollection<HallSegment> HallSegments
         {

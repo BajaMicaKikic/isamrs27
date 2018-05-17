@@ -15,7 +15,7 @@ namespace mrs.ApplicationCore.Interfaces
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(long id);
         /// <summary>
         /// Lists all asynchronous.
         /// </summary>

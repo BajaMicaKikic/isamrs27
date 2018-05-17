@@ -13,7 +13,7 @@
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        T GetById(int id);
+        T GetById(long id);
         /// <summary>
         /// Gets the single by spec.
         /// </summary>

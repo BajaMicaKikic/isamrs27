@@ -50,10 +50,10 @@
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> MovieProjectionsAsync()
+        public async Task<IActionResult> MovieProjectionsAsync(long cultureObjectId)
         {
             ViewData["Title"] = "Movie Projections";
-            var model = await GetMoviesViewModelAsync();
+            var model = await GetMoviesViewModelAsync(cultureObjectId);
             
             return View("MovieProjections",model);
         }
@@ -87,27 +87,25 @@
 
             return View("CultureObjects", model);
         }
-        [HttpPost]
+        [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Projections(long Id)
+        public async Task<IActionResult> Projections( long Id, [Bind("Id")]  MovieItemViewModel projection)
         {
-            ViewData["Title"] = "All Theaters";
-            ViewData["object"] = "THEATERS";
+            ViewData["Title"] = "All Projections";
+            ViewData["object"] = "Projections";
 
-            var model = await GetTheatersViewModelAsync();
+            var model = await GetMoviesViewModelAsync(Id);
 
             return View("Projections", model);
         }
-
-
 
         /// <summary>
         /// Gets the movies view model asynchronous.
         /// </summary>
         /// <returns></returns>
-        private async Task<MoviesViewModel> GetMoviesViewModelAsync()
+        private async Task<MoviesViewModel> GetMoviesViewModelAsync( long cultureObjectId )
         {
-            return await _movieViewModelService.GetAllProjectionsForUnregisteredUsers();
+            return await _movieViewModelService.GetAllProjectionsForUnregisteredUsers(cultureObjectId);
         }
         /// <summary>
         /// Gets the cinemas view model asynchronous.
