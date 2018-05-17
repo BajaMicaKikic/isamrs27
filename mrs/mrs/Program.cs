@@ -14,6 +14,7 @@
     using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.Infrastructure.AppIdentity;
     using mrs.Infrastructure.Data;
+    using mrs.Infrastructure.Data.Repository;
 
     public class Program
     {
@@ -47,6 +48,9 @@
                     var screeningRepository = services.GetRequiredService<IScreeningRepository>();
                     var seatRepository = services.GetRequiredService<ISeatRepository>();
                     var seatReservationRepository = services.GetRequiredService<ISeatReservationRepository>();
+                    var accountRepository = services.GetRequiredService<IAccountRepository>();
+                    var userRepository = services.GetRequiredService<IUserRepository>();
+
                     if ((idnContext.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
                     {
                         AppIdentityDbContextSeed.SeedAsync(userManager, roleManager).Wait();
@@ -61,7 +65,9 @@
                                                       cultureObjectHallRepository,
                                                       screeningRepository,
                                                       seatRepository,
-                                                      seatReservationRepository).Wait();
+                                                      seatReservationRepository, 
+                                                      accountRepository,
+                                                      userRepository).Wait();
                     }
                     
                 }
