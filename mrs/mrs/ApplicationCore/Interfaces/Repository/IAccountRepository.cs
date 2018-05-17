@@ -6,7 +6,7 @@
     /// </summary>
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IRepository{mrs.ApplicationCore.Entities.Account}" />
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IAsyncRepository{mrs.ApplicationCore.Entities.Account}" />
-    interface IAccountRepository :IRepository<Account>,IAsyncRepository<Account>
+    public interface IAccountRepository :IRepository<Account>,IAsyncRepository<Account>
     {
         // Add method signatures.
     }

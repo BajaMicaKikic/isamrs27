@@ -15,7 +15,9 @@
                                            ICultureObjectHallRepository cultureObjectHallRepository,
                                            IScreeningRepository screeningRepository,
                                            ISeatRepository seatRepository,
-                                           ISeatReservationRepository seatReservationRepository
+                                           ISeatReservationRepository seatReservationRepository,
+                                           IAccountRepository accountRepository,
+                                           IUserRepository userRepository
                                            )
         {
             var genre1 = new Genre { GenreName = "Thriler" };
@@ -24,6 +26,15 @@
             var genre4 = new Genre { GenreName = "Tragedy" };
             var genre5 = new Genre { GenreName = "Commedy" };
             var genre6 = new Genre { GenreName = "Action" };
+
+            var account1 = new Account { AccountType = "korisnik" };
+            var account2 = new Account { AccountType = "adminFanZone" };
+            var account3 = new Account { AccountType = "adminObjekta" };
+            var account4 = new Account { AccountType = "adminSistema" };
+
+            var user1 = new User { AccountId = 1, Password = "x", ConfirmPassword = "x", EmailAddress = "x", FirstName = "x", LastName = "x", Phone = "x", Town = "x" };
+            var user2 = new User { AccountId = 1, Password = "m", ConfirmPassword = "m", EmailAddress = "m", FirstName = "m", LastName = "m", Phone = "m", Town = "m" };
+            var user3 = new User { AccountId = 1, Password = "a", ConfirmPassword = "a", EmailAddress = "a", FirstName = "a", LastName = "a", Phone = "a", Town = "a" };
 
             var cultureObject1 = new CultureObject {Address ="Belgrade, Serbia",Name="Jugoslvensko Dramsko Pozoriste", ObjectDiscriminator = Object.Theater, PromoDescription = "Teatar koji zauvek zivi."  };
             var cultureObject2 = new CultureObject { Address = "Belgrade, Serbia", Name = "Beogradsko Dramsko Pozoriste", ObjectDiscriminator = Object.Theater, PromoDescription = "Teatar koji zauvek zivi." };
@@ -57,9 +68,9 @@
             var seat4 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment2 };
             var seat5 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment2 };
 
-            var seatReservation1 = new SeatReservation { Screening = screening1, Seat = seat1 };
-            var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat2 };
-            var seatReservation3 = new SeatReservation { Screening = screening1, Seat = seat3 };
+            var seatReservation1 = new SeatReservation { Screening = screening1, Seat = seat1, User=user1 };
+            var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat2 , User=user2};
+            var seatReservation3 = new SeatReservation { Screening = screening1, Seat = seat3, User=user2 };
 
             await genreRepository.AddAsync(genre1);
             await genreRepository.AddAsync(genre2);
@@ -68,6 +79,15 @@
             await genreRepository.AddAsync(genre5);
             await genreRepository.AddAsync(genre6);
 
+            await accountRepository.AddAsync(account1);
+            await accountRepository.AddAsync(account2);
+            await accountRepository.AddAsync(account3);
+            await accountRepository.AddAsync(account4);
+            
+            await userRepository.AddAsync(user1);
+            await userRepository.AddAsync(user2);
+            await userRepository.AddAsync(user3);
+            
             await actorRepository.AddAsync(actor1);
             await actorRepository.AddAsync(actor2);
 

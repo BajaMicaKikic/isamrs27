@@ -93,5 +93,18 @@ namespace mrs.ApplicationCore.Entities
             get { return _propAds; }
             set { _propAds = (List<PropAd>)value; }
         }
+
+        private List<SeatReservation> _seatReservations = new List<SeatReservation>();
+        /// <summary>
+        /// Gets or sets the property ads.
+        /// </summary>
+        /// <value>
+        /// The property ads.
+        /// </value>
+        public ICollection<SeatReservation> SeatReservations
+        {
+            get { return _seatReservations; }
+            set { _seatReservations = (List<SeatReservation>)value; }
+        }
     }
 }
