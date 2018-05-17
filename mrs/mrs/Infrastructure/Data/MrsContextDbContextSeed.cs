@@ -68,9 +68,9 @@
             var seat4 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment2 };
             var seat5 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment2 };
 
-            var seatReservation1 = new SeatReservation { Screening = screening1, Seat = seat1 };
-            var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat2 };
-            var seatReservation3 = new SeatReservation { Screening = screening1, Seat = seat3 };
+            var seatReservation1 = new SeatReservation { Screening = screening1, Seat = seat1, User=user1 };
+            var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat2 , User=user2};
+            var seatReservation3 = new SeatReservation { Screening = screening1, Seat = seat3, User=user2 };
 
             await genreRepository.AddAsync(genre1);
             await genreRepository.AddAsync(genre2);

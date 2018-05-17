@@ -79,8 +79,11 @@
 
         public long ScreeningId { get; set; }
         public long SeatId { get; set; }
+        public long UserId { get; set; }
 
         public Screening Screening { get; set; }
         public Seat Seat { get; set; }
+        public User User { get; set; }
+
     }
 }

@@ -16,6 +16,7 @@
             builder.Property(sr => sr.IsPaid).HasColumnName("IsPaid").IsRequired();
             builder.Property(sr => sr.ScreeningId).HasColumnName("ScreeningId").IsRequired();
             builder.Property(sr => sr.SeatId).HasColumnName("SeatId").IsRequired();
+            builder.Property(sr => sr.UserId).HasColumnName("UserId").IsRequired();
             //Relations
             builder.HasOne(sr => sr.Screening)
                .WithMany(s => s.SeatReservations)
@@ -24,6 +25,10 @@
             builder.HasOne(sr => sr.Seat)
                 .WithMany(s => s.SeatReservations)
                 .HasForeignKey(sr => sr.SeatId);
+
+            builder.HasOne(sr => sr.User)
+                .WithMany(s=>s.SeatReservations)
+                .HasForeignKey(sr=>sr.UserId);
             //Table
             builder.ToTable("SeatReservation");
         }
