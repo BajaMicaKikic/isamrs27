@@ -27,7 +27,7 @@ namespace mrs.Infrastructure.Data.Mapping
             builder.Property(u => u.Password).HasColumnName("Password").IsRequired();
             builder.Property(u => u.ConfirmPassword).HasColumnName("ConfirmPassword").IsRequired().Equals("Password");
             builder.Property(u => u.Phone).HasColumnName("Phone").IsRequired();
-            builder.Property(u => u.Town).HasColumnName("Town").IsRequired();
+            builder.Property(u => u.City).HasColumnName("Town").IsRequired();
 
             // Relations
             builder.HasOne(u => u.Account)

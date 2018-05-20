@@ -22,9 +22,14 @@
         {
 
         }
-        public async Task<List<Screening>> GetProjByCulObjIdAsync(long id)
+        /// <summary>
+        /// Gets the proj by cul object identifier asynchronous.
+        /// </summary>
+        /// <param name="cultureObjectId">The culture object identifier.</param>
+        /// <returns>List of Screenings.</returns>
+        public async Task<List<Screening>> GetProjByCulObjIdAsync(long cultureObjectId)
         {
-            var culObjHalls = await ListAsync(new CultureObjectHallSpecification(id));
+            var culObjHalls = await ListAsync(new CultureObjectHallSpecification(cultureObjectId));
             var screenings = new List<Screening>();
             foreach (var hall in culObjHalls)
             {

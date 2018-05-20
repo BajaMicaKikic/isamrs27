@@ -51,8 +51,7 @@ namespace mrs.ApplicationCore.Entities
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-
-        public string Town { get; set; }
+        public string City { get; set; }
         public string Phone { get; set; }
 
         public long AccountId { get; set; }
@@ -63,6 +62,7 @@ namespace mrs.ApplicationCore.Entities
         /// The account.
         /// </value>
         public Account Account { get; set; }
+        
         /// <summary>
         /// The remarks
         /// </summary>
@@ -93,7 +93,6 @@ namespace mrs.ApplicationCore.Entities
             get { return _propAds; }
             set { _propAds = (List<PropAd>)value; }
         }
-
         private List<SeatReservation> _seatReservations = new List<SeatReservation>();
         /// <summary>
         /// Gets or sets the property ads.

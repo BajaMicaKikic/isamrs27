@@ -31,9 +31,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MovieShortDescription)
-            </td>
+            </td>           
             <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                <a asp-action="ScreeningInfo" asp-route-CultureObjectId="@Model.CultureObjectId" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }

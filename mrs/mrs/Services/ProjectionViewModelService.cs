@@ -42,7 +42,7 @@
             {
                 projections.Add(_screeningRepository.GetAllProjsByScreenId(screening.Id));
             }
-            var viewModel = CreateViewModelFromProjections(projections);
+            var viewModel = CreateViewModelFromProjections(projections.Distinct().ToList());
             return viewModel;
         }
         /// <summary>

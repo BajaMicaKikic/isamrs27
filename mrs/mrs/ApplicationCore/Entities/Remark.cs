@@ -30,7 +30,7 @@
         /// <value>
         /// The grade.
         /// </value>
-        public byte Grade { get; set; }
+        public Grade Grade { get; set; }
         /// <summary>
         /// Gets or sets the culture object.
         /// </summary>
@@ -49,7 +49,7 @@
     /// <summary>
     /// Enum of Grades.
     /// </summary>
-    enum Grade
+    public enum Grade
     {
         VeryBad = 1,
         Bad = 2,

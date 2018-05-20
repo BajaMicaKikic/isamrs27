@@ -34,8 +34,28 @@
         /// The confirm password.
         /// </value>
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "First Name")]
+        [Compare("FirstName", ErrorMessage = "First Name must be inserted.")]
+        public string FirstName { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Last Name")]
+        [Compare("LastName", ErrorMessage = "Last Name must be inserted.")]
+        public string LastName { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "City")]
+        [Compare("City", ErrorMessage = "City name must be inserted.")]
+        public string City { get; set; }
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Phone Mumber")]
+        [Compare("PhoneNumber", ErrorMessage = "Phone number must be inserted.")]
+        public string PhoneNumber { get; set; }
     }
 }

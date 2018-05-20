@@ -8,6 +8,7 @@
             : base(p => p.Id == screeningId)
         {
             AddInclude(s => s.Projection);
+            AddInclude(s => s.SeatReservations);
         }
     }
 }

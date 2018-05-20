@@ -14,7 +14,6 @@
     using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.Infrastructure.AppIdentity;
     using mrs.Infrastructure.Data;
-    using mrs.Infrastructure.Data.Repository;
 
     public class Program
     {
@@ -36,6 +35,7 @@
                 {
                     var mrsContext = services.GetRequiredService<MrsContext>();
                     var idnContext = services.GetRequiredService<AppIdentityDbContext>();
+
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
 

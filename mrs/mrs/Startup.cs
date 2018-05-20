@@ -135,10 +135,15 @@ namespace mrs
             services.AddMemoryCache();
 
             services.AddSession();
-            services.AddMvc()
-                .AddSessionStateTempDataProvider();
-
-            _services = services;
+            services.AddMvc().AddSessionStateTempDataProvider();
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("RequireSysAdministratorRole", policy => policy.RequireRole("System Administrator"));
+            //    options.AddPolicy("RequireObjAdministratorRole", policy => policy.RequireRole("Culture Object Administrator"));
+            //    options.AddPolicy("RequireFunAdministratorRole", policy => policy.RequireRole("Fun Zone Administrator"));
+            //    options.AddPolicy("RequireRegUserRole", policy => policy.RequireRole("Registered User"));
+            //    options.AddPolicy("RequireUnRegUserRole", policy => policy.RequireRole("Unregistered User"));
+            //});
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.        
         /// <summary>
@@ -167,7 +172,7 @@ namespace mrs
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}/{id1?}");
             });
         }
     }

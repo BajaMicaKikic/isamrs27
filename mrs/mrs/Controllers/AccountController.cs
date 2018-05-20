@@ -4,6 +4,8 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using mrs.ApplicationCore.Entities;
+    using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.Infrastructure.AppIdentity;
     using mrs.ViewModels.Account;
     using System;
@@ -24,6 +26,7 @@
         /// The sign in manager
         /// </summary>
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserRepository _userRepository;
         //private readonly IAppLogger<AccountController> _logger;        
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountController"/> class.
@@ -32,12 +35,14 @@
         /// <param name="signInManager">The sign in manager.</param>
         public AccountController(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager
+            SignInManager<ApplicationUser> signInManager,
+            IUserRepository userRepository
             //IAppLogger<AccountController> logger
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _userRepository = userRepository;
             //_logger = logger;
         }
         // GET: /Account/SignIn         
@@ -89,8 +94,9 @@
                 if (!String.IsNullOrEmpty(anonymousId))
                 {
                     Response.Cookies.Delete(Constants.CULTURE_COOKIENAME);
-                }
-                return RedirectToLocal(returnUrl);
+                }                                
+                //return RedirectToLocal(returnUrl);
+                return RedirectToAction("Index","Profile");
             }
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(model);
@@ -209,7 +215,22 @@
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //Test
+                var bussinessUser = new User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Phone = model.PhoneNumber,
+                    Password = model.Password,
+                    ConfirmPassword = model.Password,
+                    EmailAddress = model.Email,
+                    City = model.City,
+                    AccountId = 1
+                };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "REGISTERED USER");
+                await _userRepository.AddAsync(bussinessUser);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
