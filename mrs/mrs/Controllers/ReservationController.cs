@@ -3,30 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using mrs.ApplicationCore.Entities;
 using mrs.Infrastructure.Data;
+using mrs.Interfaces;
+using mrs.ViewModels.CultureObjectsHome;
+using mrs.ViewModels.Reservation;
 
 namespace mrs.Controllers
 {
     public class ReservationController : Controller
     {
-        public ActionResult Index()
+        private readonly IProjectionViewModelService _movieViewModelService;
+        /// <summary>
+        /// The culture objects view model service
+        /// </summary>
+        private readonly ICultureObjectViewModelService _cultureObjectsViewModelService;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CultureObjectsHomeController"/> class.
+        /// </summary>
+        /// <param name="movieViewModelService">The movie view model service.</param>
+        /// <param name="cultureObjectsViewModelService">The culture objects view model service.</param>
+        public ReservationController(IProjectionViewModelService movieViewModelService,
+                                             ICultureObjectViewModelService cultureObjectsViewModelService)
         {
-            return View();
+            _movieViewModelService = movieViewModelService;
+            _cultureObjectsViewModelService = cultureObjectsViewModelService;
+
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            var modelCOT = await _cultureObjectsViewModelService.GetAllTheatersForUnregisteredUsers();
+            var modelCOC = await _cultureObjectsViewModelService.GetAllCinemasForUnregisteredUsers();
+            //  var model = await _movieViewModelService.GetAllProjectionsForUnregisteredUsers(1);
+
+            modelCOC.Items.AddRange(modelCOT.Items);
+            ReservationItemViewModel vm = new ReservationItemViewModel();
+            IEnumerable<CinemaItemViewModel> ttt = modelCOC.Items;
+           // IEnumerable<CinemaItemViewModel> ccc = modelCOC.Items;
+            //vm.MoviesList = ttt;
+            
+            vm.MoviesList = new SelectList(ttt, "Id", "Name");
+           //vm.TheaterList = new SelectList(ccc, "Id", "Name");
+
+            return View(vm);
         }
 
         //public AcceptedResult Reservate() {
 
         //}
 
-        [HttpPost]
-        public ActionResult Reservate(CultureObject co, Projection po, CultureObjectHall coh, Screening sc)
+        [HttpGet]
+        public async Task<ActionResult> Reservate(SeatReservation sr)
         {
-            if (ModelState.IsValid)
-            {
-                MrsContext mrs = new MrsContext();
-            }
-            return View();
+            var model =  await _movieViewModelService.GetAllProjectionsForUnregisteredUsers(1);
+            return View(model);
         }
+
     }
 }

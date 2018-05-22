@@ -13,6 +13,6 @@
     {
         // Add method signature.
         //Task<List<Projection>> GetProjByCulObjIdAsync(long id);
-
+        Task<List<CultureObject>> GetCultureObject(long id);
     }
 }

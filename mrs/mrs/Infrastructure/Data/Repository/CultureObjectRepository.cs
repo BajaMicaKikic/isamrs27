@@ -22,7 +22,12 @@
         {
 
         }
-
+       
+        public async Task<List<CultureObject>> GetCultureObject(long id)
+        {
+            var cultureObjects = await ListAsync(new CultureObjectSpecification(id));
+            return cultureObjects;
+        }
         //public async Task<List<Projection>> GetProjByCulObjIdAsync(long id)
         //{
         //    var culObj = await ListAsync(new CultureObjectHallSpecification(id));

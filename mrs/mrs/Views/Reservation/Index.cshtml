@@ -1,4 +1,4 @@
-﻿@model mrs.ApplicationCore.Entities.SeatReservation
+﻿@model mrs.ViewModels.Reservation.ReservationItemViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -13,39 +13,19 @@
     <div class="col-md-4">
         <form asp-action="Index">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsReserved" /> @Html.DisplayNameFor(model => model.IsReserved)
-                    </label>
-                </div>
+                <label asp-for="Objeat" class="control-label"></label>
+                <select asp-for="Objeat" class ="form-control" asp-items="@Model.MoviesList"></select>
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsPaid" /> @Html.DisplayNameFor(model => model.IsPaid)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScreeningId" class="control-label"></label>
-                <select asp-for="ScreeningId" class ="form-control" asp-items="ViewBag.ScreeningId"></select>
-            </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="SeatId" class="control-label"></label>
                 <select asp-for="SeatId" class ="form-control" asp-items="ViewBag.SeatId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
