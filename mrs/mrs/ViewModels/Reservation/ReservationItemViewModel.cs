@@ -13,6 +13,5 @@ namespace mrs.ViewModels.Reservation
         public string Objeat { get; set; }
         public SelectList MoviesList { get; set; }
         public SelectList TheaterList { get; set; }
-        public SelectList 
     }
 }
