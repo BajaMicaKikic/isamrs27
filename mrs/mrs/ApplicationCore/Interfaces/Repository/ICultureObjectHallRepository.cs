@@ -13,5 +13,7 @@
     {
         // Add method signatures.
         Task<List<Screening>> GetProjByCulObjIdAsync(long id);
+
+        Task<List<CultureObjectHall>> GetCultObjHallByCulObjIdAsync(long id);
     }
 }

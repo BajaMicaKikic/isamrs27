@@ -45,6 +45,17 @@
             var viewModel = CreateViewModelFromProjections(projections.Distinct().ToList());
             return viewModel;
         }
+
+        public Task<MoviesViewModel> GetAllProjectionsForUnregisteredUsers(int cultureObjectId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        //public Task<MoviesViewModel> GetAllProjectionsForUnregisteredUsers(int cultureObjectId)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
         /// <summary>
         /// Creates the view model from projections.
         /// </summary>

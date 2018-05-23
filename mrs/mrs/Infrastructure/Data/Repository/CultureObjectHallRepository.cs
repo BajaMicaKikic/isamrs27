@@ -22,6 +22,9 @@
         {
 
         }
+
+       
+
         /// <summary>
         /// Gets the proj by cul object identifier asynchronous.
         /// </summary>
@@ -36,6 +39,23 @@
                 screenings.AddRange(hall.Screenings);
             }
             return screenings;
+        }
+
+
+        public async Task<List<CultureObjectHall>> GetCultObjHallByCulObjIdAsync(long id)
+        {
+            var culObjHalls = await ListAsync(new CultureObjectHallSpecification(id));
+            return culObjHalls;
+        }
+
+        public Task<List<CultureObjectHall>> GetCultObjHallByCulObjIdAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<List<Screening>> GetProjByCulObjIdAsync(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

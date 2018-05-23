@@ -13,19 +13,24 @@
     <div class="col-md-4">
         <form asp-action="Index">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
                 <label asp-for="Objeat" class="control-label"></label>
-                <select asp-for="Objeat" class ="form-control" asp-items="@Model.MoviesList"></select>
-            </div>
-            @*<div class="form-group">
-                <label asp-for="SeatId" class="control-label"></label>
-                <select asp-for="SeatId" class ="form-control" asp-items="ViewBag.SeatId"></select>
+                <select asp-for="Objeat" id="objektiSvi" class="form-control" asp-items="@Model.MoviesList"></select>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>*@
+                <label asp-for="Sala" class="control-label"></label>
+                <select asp-for="Sala" class="form-control" id="projekcija" 
+                        asp-items="@(new SelectList(string.Empty, "CultureObjectHallId", "CultureObjectHallName"))"></select>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="SeatId" class="control-label"></label>
+            <select asp-for="SeatId" class ="form-control" asp-items="ViewBag.SeatId"></select>
+        </div>
+        <div class="form-group">
+            <label asp-for="UserId" class="control-label"></label>
+            <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+        </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -37,3 +42,24 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@* json script ovde *@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#objektiSvi').change(function () {
+            var url = '@Url.Content("~/")' + "Reservation/GetCultureObjectHall";
+            var ddlsource = "#objektiSvi";
+            $.getJSON(url, { Id: $(ddlsource).val() }, function (data) {
+                var items = '';
+                $("#projekcija").empty();
+                $.each(data, function (i, hallList) {
+                    items += "<option value='" + hallList.val() + "'>" + hallList.text + "</option>";
+
+                });
+                $('#projekcija').html(items);
+            });
+
+        });
+    });
+</script>
