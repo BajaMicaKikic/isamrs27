@@ -3,6 +3,8 @@
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.ApplicationCore.Specification;
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// Class for Screening Repository pattern. 
@@ -19,6 +21,18 @@
         {
             var screening = GetSingleBySpec(new ScreeningSpecification(screeningId));
             return screening.Projection;
+        }
+
+        //public async Task<List<Screening>> GetProjectionByCOHSDTAsync(DateTime SDT, long CultureObjectHallId)
+        //{
+        //    var projectionsID = await ListAsync(new ScreeningSpecification(CultureObjectHallId));
+        //    var projectionsSDT= await ListAsync()
+        //}
+
+        public async Task<List<Screening>> GetScreeningByCulObjHallIdAsync(long id)
+        {
+            var screenings = await ListAsync(new ScreeningSpecification(id));
+            return screenings;
         }
     }
 }

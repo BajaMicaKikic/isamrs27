@@ -1,6 +1,8 @@
 ﻿namespace mrs.ApplicationCore.Interfaces.Repository
 {
     using mrs.ApplicationCore.Entities;
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -12,5 +14,7 @@
     {
         // Add method signatures.
         Projection GetAllProjsByScreenId(long screeningId);
+        Task<List<Screening>> GetScreeningByCulObjHallIdAsync(long id);
+        ///Task<List<Screening>> GetProjectionByCOHSDTAsync(DateTime SDT, long CultureObjectHallId);
     }
 }

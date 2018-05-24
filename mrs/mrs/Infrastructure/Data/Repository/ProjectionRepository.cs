@@ -1,7 +1,10 @@
 ﻿namespace mrs.Infrastructure.Data.Repository
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
+    using mrs.ApplicationCore.Specification;
 
     /// <summary>
     /// Class for Projection Repository pattern. 
@@ -17,6 +20,17 @@
         public ProjectionRepository(MrsContext dbContext) : base(dbContext)
         {
             
-        }   
+        }
+
+        public Task<List<Projection>> GetProjectionByScreeningIdAsync(long id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        //public async Task<List<Projection>> GetProjectionByScreeningIdAsync(long id)
+        //{
+        //    //var projections = await ListAsync(new ProjectionSpecification(id));
+        //    //return projections;
+        //}
     }
 }

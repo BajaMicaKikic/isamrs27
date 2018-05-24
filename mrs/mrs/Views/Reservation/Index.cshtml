@@ -15,22 +15,20 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Objeat" class="control-label"></label>
-                <select asp-for="Objeat" id="objektiSvi" class="form-control" asp-items="@Model.MoviesList"></select>
+                <label asp-for="CultureObjectName" class="control-label"></label>
+                <select asp-for="CultureObjectId" id="CultureObjectId" class="form-control" asp-items="@Model.MoviesList"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Sala" class="control-label"></label>
-                <select asp-for="Sala" class="form-control" id="projekcija" 
+                <label asp-for="CultureObjectHallName" class="control-label"></label>
+                <select asp-for="CultureObjectHallId" class="form-control" id="CultureObjectHallId" 
                         asp-items="@(new SelectList(string.Empty, "CultureObjectHallId", "CultureObjectHallName"))"></select>
             </div>
-            @*<div class="form-group">
-            <label asp-for="SeatId" class="control-label"></label>
-            <select asp-for="SeatId" class ="form-control" asp-items="ViewBag.SeatId"></select>
-        </div>
-        <div class="form-group">
-            <label asp-for="UserId" class="control-label"></label>
-            <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-        </div>*@
+            <div class="form-group">
+                <label asp-for="ScreeningStartDateTime" class="control-label"></label>
+                <select asp-for="ScreeningId" class="form-control" id="ScreeningId"
+                        asp-items="@(new SelectList(string.Empty, "ScreeningId", "ScreeningStartDateTime"))"></select>
+            </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -47,17 +45,35 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#objektiSvi').change(function () {
+        $('#CultureObjectId').change(function () {
             var url = '@Url.Content("~/")' + "Reservation/GetCultureObjectHall";
-            var ddlsource = "#objektiSvi";
-            $.getJSON(url, { Id: $(ddlsource).val() }, function (data) {
+            var ddlsource = "#CultureObjectId";
+            $.getJSON(url, { CultureObjectId: $(ddlsource).val(), async: false }, function (data) {
+                
                 var items = '';
-                $("#projekcija").empty();
+                
+                $("#CultureObjectHallId").empty();
                 $.each(data, function (i, hallList) {
-                    items += "<option value='" + hallList.val() + "'>" + hallList.text + "</option>";
+                    items += "<option value='" + hallList.value + "'>" + hallList.text + "</option>";
 
                 });
-                $('#projekcija').html(items);
+                $('#CultureObjectHallId').html(items);
+            });
+
+        });
+        $('#CultureObjectHallId').change(function () {
+            var url = '@Url.Content("~/")' + "Reservation/GetScreening";
+            var ddlsource = "#CultureObjectHallId";
+            $.getJSON(url, { CultureObjectHallId: $(ddlsource).val(), async: false }, function (data) {
+                
+                var items = '';
+                
+                $("#ScreeningId").empty();
+                $.each(data, function (i, screeningList) {
+                    items += "<option value='" + screeningList.value + "'>" + screeningList.text + "</option>";
+
+                });
+                $('#ScreeningId').html(items);
             });
 
         });

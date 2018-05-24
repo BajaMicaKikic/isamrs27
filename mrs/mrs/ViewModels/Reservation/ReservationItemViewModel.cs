@@ -10,10 +10,18 @@ namespace mrs.ViewModels.Reservation
 {
     public class ReservationItemViewModel
     {
-        public string Objeat { get; set; }
-        public string Sala{ get; set; }
+        public int CultureObjectId { get; set; }
+        public string CultureObjectName { get; set; }
+        public int CultureObjectHallId { get; set; }
+        public string CultureObjectHallName { get; set; }
         public SelectList MoviesList { get; set; }
         public SelectList TheaterList { get; set; }
         public SelectList HallList { get; set; }
+        public int ScreeningId { get; set; }
+        public int ProjectionId{ get; set; }
+        public SelectList ScreeningList { get; set; }
+        public DateTime ScreeningStartDateTime { get; set; }
+        public string ProjectionName { get; set; }
+        public SelectList ProjectionList { get; set; }
     }
 }
