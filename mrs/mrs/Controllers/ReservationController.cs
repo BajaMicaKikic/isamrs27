@@ -76,7 +76,7 @@ namespace mrs.Controllers
         }
 
         
-        //public JsonResult GetProjection(long ProjectionId) { }
+        
 
         //[HttpGet]
         //public async Task<ActionResult> Reservate(SeatReservation sr)

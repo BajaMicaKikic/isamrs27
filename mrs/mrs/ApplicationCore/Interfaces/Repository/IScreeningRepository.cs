@@ -15,6 +15,6 @@
         // Add method signatures.
         Projection GetAllProjsByScreenId(long screeningId);
         Task<List<Screening>> GetScreeningByCulObjHallIdAsync(long id);
-        ///Task<List<Screening>> GetProjectionByCOHSDTAsync(DateTime SDT, long CultureObjectHallId);
+        Task<List<Screening>> GetProjectionByCOHSDTAsync(DateTime SDT, long CultureObjectHallId);
     }
 }

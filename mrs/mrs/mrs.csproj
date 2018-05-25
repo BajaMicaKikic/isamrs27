@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="jQuery.UI" Version="1.12.1.1" />
+    <PackageReference Include="jQuery.UI.Combined" Version="1.12.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.0-preview2-final" />

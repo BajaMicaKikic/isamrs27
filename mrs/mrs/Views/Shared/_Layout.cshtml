@@ -10,7 +10,13 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     </environment>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    @*<link rel="stylesheet" href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")"  />*@
+    <!-- Required jQuery and jQuery UI Javascript references -->
+    @*<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")"></script>*@
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
