@@ -1,6 +1,9 @@
 ﻿namespace mrs.ApplicationCore.Interfaces.Repository
 {
     using mrs.ApplicationCore.Entities;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     /// <summary>
     /// Interface for Hall Segment Repository pattern.
     /// </summary>
@@ -8,6 +11,6 @@
     /// <seealso cref="mrs.ApplicationCore.Interfaces.IAsyncRepository{mrs.ApplicationCore.Entities.HallSegment}" />
     public interface IHallSegmentRepository : IRepository<HallSegment>, IAsyncRepository<HallSegment>
     {
-        // Add method signatures.
+        Task<List<HallSegment>> GetHallSegmentByCOHIdAsync(long CultureObjectHallId);
     }
 }

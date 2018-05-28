@@ -1,5 +1,7 @@
 ﻿namespace mrs.Infrastructure.Data.Repository
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
     /// <summary>
@@ -15,6 +17,14 @@
         /// <param name="dbContext">The database context.</param>
         public SeatRepository(MrsContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<List<Seat>> GetSeatByHallSegmentIdAsync(long HallSegmentId)
+        {
+            List<Seat> seats = await ListAllAsync();
+            var seatList = seats.FindAll(s => s.HallSegmentId== HallSegmentId);
+
+            return seatList;
         }
     }
 }

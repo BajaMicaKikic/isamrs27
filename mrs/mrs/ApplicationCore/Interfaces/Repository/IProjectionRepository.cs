@@ -13,5 +13,6 @@
     {
         // Add method signatures.
         Task<List<Projection>> GetProjectionByScreeningIdAsync(long id);
+        //Task<Projection> GetAllProjection();
     }
 }

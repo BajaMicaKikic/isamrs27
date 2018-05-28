@@ -23,25 +23,21 @@
             return screening.Projection;
         }
 
-        public async Task<List<Screening>> GetProjectionByCOHSDTAsync(DateTime SDT, long CultureObjectHallId)
+       public async Task<List<Screening>> GetSDTByCOHIdAndProjectionIdAsync(long CultureObjectHallId, long ProjectionId)
         {
             List<Screening> ttt = await ListAllAsync();
-            var listProjection = ttt.FindAll(c => c.ScreenStartDateTime == SDT && c.CultureObjectHallId == CultureObjectHallId);
+            var listScreening = ttt.FindAll(c => c.CultureObjectHallId == CultureObjectHallId && c.ProjectionId == ProjectionId);
 
-            return listProjection;
+            return listScreening;
         }
-
-        //public async Task<List<Screening>> GetProjectionByCOHSDTAsync(DateTime SDT, long CultureObjectHallId)
-        //{
-        //    var projectionsID = await ListAsync(new ScreeningSpecification(CultureObjectHallId));
-        //    var projectionsSDT= await ListAsync()
-        //}
 
         public async Task<List<Screening>> GetScreeningByCulObjHallIdAsync(long id)
         {
             var screenings = await ListAsync(new ScreeningSpecification(id));
             return screenings;
         }
+
+
     }
 }
 

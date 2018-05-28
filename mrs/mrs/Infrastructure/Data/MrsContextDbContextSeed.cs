@@ -49,9 +49,10 @@
             var actor1 = new Actor { FirstName = "Leo", LastName = "DiCaprio" };
             var actor2 = new Actor { FirstName = "Katrin Zita", LastName = "Jones" };
 
-            var projection = new Projection { ProjectionName = "Titanik", Actor = actor1, Duration = decimal.Parse("123.34"), Genre = genre3, ProducerName = "James Cameron", ProjectionType = ProjectionType.Movie, ShortDescirption = "Description" };
-
-           
+            var projection1 = new Projection { ProjectionName = "Titanik", Actor = actor1, Duration = decimal.Parse("123.34"), Genre = genre3, ProducerName = "James Cameron", ProjectionType = ProjectionType.Movie, ShortDescirption = "Description" };
+            var projection2 = new Projection { ProjectionName = "Avatar", Actor = actor2, Duration = decimal.Parse("100"), Genre = genre3, ProducerName = "James Cameron", ProjectionType = ProjectionType.Movie, ShortDescirption = "Description" };
+            var projection3 = new Projection { ProjectionName = "Seobe", Actor = actor2, Duration = decimal.Parse("120"), Genre = genre3, ProducerName = "Vida Ognjanovic", ProjectionType = ProjectionType.Play, ShortDescirption = "Description" };
+            
             var hall1 = new CultureObjectHall { HallName = "Mira Stupica", SeatsNo = 1000, CultureObject = cultureObject1 };
             var hall2 = new CultureObjectHall { HallName = "Main Hall", SeatsNo = 1300, CultureObject = cultureObject1 };
             var hall3 = new CultureObjectHall { HallName = "Private Hall", SeatsNo = 150, CultureObject = cultureObject1 };
@@ -65,8 +66,9 @@
             var hallSegment6 = new HallSegment { HallSegmentName = "VIP", SeatsNo = 40, CultureObjecsHall = hall2 };
 
 
-            var screening1 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 13, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection };
-            var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 20, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection };
+            var screening1 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 30, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
+            var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 31, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection2 };
+            var screening3 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 31, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
 
             var seat31 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment3 };
             var seat32 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment3 };
@@ -132,8 +134,10 @@
             await actorRepository.AddAsync(actor1);
             await actorRepository.AddAsync(actor2);
 
-            await projectionRepository.AddAsync(projection);
-
+            await projectionRepository.AddAsync(projection1);
+            await projectionRepository.AddAsync(projection2);
+            await projectionRepository.AddAsync(projection3);
+            
             await cultureObjectRepository.AddAsync(cultureObject1);
             await cultureObjectRepository.AddAsync(cultureObject2);
             await cultureObjectRepository.AddAsync(cultureObject3);
@@ -158,7 +162,8 @@
 
             await screeningRepository.AddAsync(screening1);
             await screeningRepository.AddAsync(screening2);
-
+            await screeningRepository.AddAsync(screening3);
+            
             await seatRepository.AddAsync(seat11);
             await seatRepository.AddAsync(seat12);
             await seatRepository.AddAsync(seat13);

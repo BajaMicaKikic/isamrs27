@@ -1,5 +1,7 @@
 ﻿namespace mrs.Infrastructure.Data.Repository
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
     /// <summary>
@@ -16,6 +18,14 @@
         public HallSegmentRepository(MrsContext dbContext) : base(dbContext)
         {
 
+        }
+
+        public async Task<List<HallSegment>> GetHallSegmentByCOHIdAsync(long CultureObjectHallId)
+        {
+            List<HallSegment> ttt = await ListAllAsync();
+            var listHallSegments = ttt.FindAll(c => c.CultureObjectHallId == CultureObjectHallId);
+
+            return listHallSegments;
         }
     }
 }

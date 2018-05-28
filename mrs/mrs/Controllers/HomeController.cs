@@ -58,13 +58,6 @@ namespace mrs.Controllers
 
                     TempData["Id"] = usr.Id.ToString();
                     TempData["EmailAddress"] = usr.EmailAddress.ToString();
-                    //TempData["FirstName"] = usr.FirstName.ToString();
-                    //TempData["LastName"] = usr.LastName.ToString();
-                    //TempData["Password"] = usr.Password.ToString();
-                    //TempData["ConfirmPassword"] = usr.ConfirmPassword.ToString();
-                    //TempData["Phone"] = usr.Phone.ToString();
-                    //TempData["Town"] = usr.Town.ToString();
-
 
                     return RedirectToAction("LoggedIn");
                 }
@@ -111,11 +104,6 @@ namespace mrs.Controllers
             return View();
         }
 
-        //public ActionResult Profil()
-        //{
-        //    return View();
-        //}
-
         public ActionResult Profil(User user)
         {
             MrsContext mrs = new MrsContext();
@@ -129,32 +117,14 @@ namespace mrs.Controllers
             }
             return Login();
         }
-
-        //public ActionResult Edit()
-        //{
-        //    return View();
-        //}
         
         public ActionResult Edit()
         {
             MrsContext mrs = new MrsContext();
             int idUser = int.Parse(HttpContext.Session.GetString("Id"));
             var usr = mrs.Users.Where(u => u.Id == idUser).FirstOrDefault();
-            //if (ModelState.IsValid)
-            //{
-            //using (MrsContext mrs = new MrsContext())
-            //{
 
-            //    if (user.EmailAddress != null && user.EmailAddress != "" && user.Password != null && user.Password != "")
-            //        mrs.SaveChanges();
-            //    return RedirectToAction("Profil");
-            //}
-
-            //}
-            
-            return View(usr);
-           
-            
+            return View(usr);  
         }
 
         [HttpPost]
@@ -164,16 +134,12 @@ namespace mrs.Controllers
             {
                 using (MrsContext mrs = new MrsContext())
                 {
-                    //  if (user.EmailAddress != null && user.EmailAddress != "" && user.Password != null && user.Password != "")
                     int idUser = int.Parse(HttpContext.Session.GetString("Id"));
                     user.Id = idUser;
                     mrs.Entry(user).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     
                     user.AccountId = 1;
-                   // user.Account.Equals("korisnik").ToString();
-                //    user.Id.Equals(mrs.Use)
-                //user.Account.Equals()
-                //user.Account.Equals()
+
                     mrs.SaveChanges();
                     return RedirectToAction("Profil");
                 }
@@ -184,8 +150,6 @@ namespace mrs.Controllers
         public ActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        
+        }      
     }
 }

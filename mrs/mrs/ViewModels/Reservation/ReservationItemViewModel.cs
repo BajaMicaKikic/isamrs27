@@ -23,5 +23,11 @@ namespace mrs.ViewModels.Reservation
         public DateTime ScreeningStartDateTime { get; set; }
         public string ProjectionName { get; set; }
         public SelectList ProjectionList { get; set; }
+        public int HallSegmentId { get; set; }
+        public string HallSegmentName { get; set; }
+        public SelectList HallSegmentList { get; set; }
+        public int SeatId { get; set; }
+        public string SeatNumber { get; set; }
+        public SelectList SeatList { get; set; }
     }
 }
