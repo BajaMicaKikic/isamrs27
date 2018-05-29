@@ -29,5 +29,6 @@ namespace mrs.ViewModels.Reservation
         public int SeatId { get; set; }
         public string SeatNumber { get; set; }
         public SelectList SeatList { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using mrs.ApplicationCore.Entities;
@@ -95,7 +96,37 @@ namespace mrs.Controllers
         {
             var seatList = await _seatRepository.GetSeatByHallSegmentIdAsync(HallSegmentId);
             var sss = Json(new SelectList(seatList, "Id", "SeatNumber"));
+            //ViewBag["SeatId"]=seatList.Get
+            //HttpContext.Session.SetString();
+
             return sss;
         }
+        [HttpPost]
+        public ActionResult Reservate(ReservationItemViewModel reservationItemViewModel)
+        {
+            if (ModelState.IsValid) { 
+                MrsContext mrs = new MrsContext();
+                SeatReservation sr = new SeatReservation();
+                sr.UserId = int.Parse(HttpContext.Session.GetString("Id"));
+                sr.IsReserved = true;
+                sr.IsPaid = false;
+                sr.SeatId = reservationItemViewModel.SeatId;
+                sr.IsActive = true;
+                sr.ScreeningId = reservationItemViewModel.ScreeningId;
+                mrs.SeatReservations.Add(sr);
+                mrs.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        //public ActionResult PoseceniObjekti()
+        //{
+        //    return View();
+        //}
+
+        //public ActionResult MojeRezervacije()
+        //{
+        //    return View();
+        //}
     }
 }

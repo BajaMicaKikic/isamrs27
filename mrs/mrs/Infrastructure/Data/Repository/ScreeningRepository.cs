@@ -36,8 +36,6 @@
             var screenings = await ListAsync(new ScreeningSpecification(id));
             return screenings;
         }
-
-
     }
 }
 

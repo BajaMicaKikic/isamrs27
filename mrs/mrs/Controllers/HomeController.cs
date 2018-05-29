@@ -96,7 +96,7 @@ namespace mrs.Controllers
                     mrs.SaveChanges();
                 }
                 ModelState.Clear();
-                 ViewBag.Message = user.FirstName + " " + user.LastName + " successfully registered.";
+                //ViewBag.Message = user.FirstName + " " + user.LastName + " successfully registered.";
                 TempData["Id"]= user.Id.ToString();
                 TempData["EmailAddress"]= user.EmailAddress.ToString();
                 return RedirectToAction("LoggedIn");
