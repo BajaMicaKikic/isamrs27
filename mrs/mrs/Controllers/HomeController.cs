@@ -150,6 +150,12 @@ namespace mrs.Controllers
         public ActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }      
+        }  
+        
+        public ActionResult Logout()
+        {
+            HttpContext.Session.SetString("Id", "");
+            return RedirectToAction("Login");
+        }
     }
 }
