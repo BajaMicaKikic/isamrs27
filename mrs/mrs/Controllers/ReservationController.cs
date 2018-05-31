@@ -124,9 +124,26 @@ namespace mrs.Controllers
         //    return View();
         //}
 
-        //public ActionResult MojeRezervacije()
-        //{
-        //    return View();
-        //}
+        public ActionResult MojeRezervacije(ReservationItemViewModel reservationItemViewModel)
+        {
+            int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+            MrsContext mrs = new MrsContext();
+            List<SeatReservation> seatReservations = mrs.SeatReservations.ToList().FindAll(i=>i.IsActive && i.UserId==idUser);
+            //mrs.SeatReservations.Select()
+            return View(seatReservations);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(long SeatReservationId)
+        {
+            if (ModelState.IsValid)
+            {
+                MrsContext mrs = new MrsContext();
+                SeatReservation sr = mrs.SeatReservations.Where(i => i.Id == SeatReservationId).FirstOrDefault();
+                mrs.SeatReservations.Remove(sr);
+                mrs.SaveChanges();
+            }
+            return RedirectToAction("MojeRezervacije");
+        }
     }
 }
