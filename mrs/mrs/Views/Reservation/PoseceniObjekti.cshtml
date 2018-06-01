@@ -1,0 +1,36 @@
+﻿@model IEnumerable<mrs.ApplicationCore.Entities.SeatReservation>
+
+@{
+    ViewData["Title"] = "PoseceniObjekti";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PoseceniObjekti</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Screening.CultureObjecsHall.CultureObject.Name)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Screening.CultureObjecsHall.CultureObject.Name)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<div class="form-group">
+    <a asp-area="" asp-controller="Home" asp-action="LoggedIn">Nazad</a>
+</div>
+
+<br />
+<div class="form-group">
+    <a asp-area="" asp-controller="Home" asp-action="Logout">Odjava</a>
+</div>

@@ -124,26 +124,45 @@ namespace mrs.Controllers
         //    return View();
         //}
 
-        public ActionResult MojeRezervacije(ReservationItemViewModel reservationItemViewModel)
+        public ActionResult MojeRezervacije()
         {
             int idUser = int.Parse(HttpContext.Session.GetString("Id"));
             MrsContext mrs = new MrsContext();
             List<SeatReservation> seatReservations = mrs.SeatReservations.ToList().FindAll(i=>i.IsActive && i.UserId==idUser);
-            //mrs.SeatReservations.Select()
+            foreach(SeatReservation sr in seatReservations)
+            {
+                sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
+                sr.Screening.Projection = mrs.Projections.Single(s => s.Id == sr.Screening.ProjectionId);
+                sr.Seat = mrs.Seats.Single(s => s.Id == sr.SeatId);
+            }
             return View(seatReservations);
         }
 
-        [HttpPost]
-        public ActionResult Delete(long SeatReservationId)
+        public ActionResult PoseceniObjekti()
         {
-            if (ModelState.IsValid)
+            int idUser = int.Parse(HttpContext.Session.GetString("Id"));
+            MrsContext mrs = new MrsContext();
+            List<SeatReservation> seatReservations = mrs.SeatReservations.ToList().FindAll(i => i.UserId == idUser);
+            foreach(SeatReservation sr in seatReservations)
             {
-                MrsContext mrs = new MrsContext();
-                SeatReservation sr = mrs.SeatReservations.Where(i => i.Id == SeatReservationId).FirstOrDefault();
-                mrs.SeatReservations.Remove(sr);
-                mrs.SaveChanges();
+                sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
+                sr.Screening.CultureObjecsHall = mrs.CultureObjectHalls.Single(s => s.Id == sr.Screening.CultureObjectHallId);
+                sr.Screening.CultureObjecsHall.CultureObject = mrs.CultureObjects.Single(s => s.Id == sr.Screening.CultureObjecsHall.CultureObjectId);
             }
-            return RedirectToAction("MojeRezervacije");
+            return View(seatReservations);
         }
+
+        //[HttpPost]
+        //public ActionResult Delete(long SeatReservationId)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        MrsContext mrs = new MrsContext();
+        //        SeatReservation sr = mrs.SeatReservations.Where(i => i.Id == SeatReservationId).FirstOrDefault();
+        //        mrs.SeatReservations.Remove(sr);
+        //        mrs.SaveChanges();
+        //    }
+        //    return RedirectToAction("MojeRezervacije");
+        //}
     }
 }

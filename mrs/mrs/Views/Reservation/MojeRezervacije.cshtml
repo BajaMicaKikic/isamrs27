@@ -10,60 +10,74 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.IsReserved)
-            </th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.IsReserved)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsPaid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.IsPaid)
+                @Html.DisplayNameFor(model => model.ScreeningId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.ScreeningId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SeatId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.IsReserved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsPaid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.ScreeningId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                <a asp-controller="Reservation" asp-action="Delete" asp-route-id="@item.Id">Otkazi</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.IsReserved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsPaid)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Screening.Projection.ProjectionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Screening.ScreenStartDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seat.SeatNumber)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>*@
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-controller="Reservation" asp-action="Delete" asp-route-id="@item.Id">Otkazi</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<div class="form-group">
+    <a asp-area="" asp-controller="Home" asp-action="LoggedIn">Nazad</a>
+</div>
+<br />
+<div class="form-group">
+    <a asp-area="" asp-controller="Home" asp-action="Logout">Odjava</a>
+</div>
