@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using mrs.ApplicationCore.Entities;
 using mrs.ApplicationCore.Interfaces.Repository;
 using mrs.Infrastructure.Data;
@@ -96,8 +97,6 @@ namespace mrs.Controllers
         {
             var seatList = await _seatRepository.GetSeatByHallSegmentIdAsync(HallSegmentId);
             var sss = Json(new SelectList(seatList, "Id", "SeatNumber"));
-            //ViewBag["SeatId"]=seatList.Get
-            //HttpContext.Session.SetString();
 
             return sss;
         }
@@ -118,11 +117,6 @@ namespace mrs.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        //public ActionResult PoseceniObjekti()
-        //{
-        //    return View();
-        //}
 
         public ActionResult MojeRezervacije()
         {
@@ -152,17 +146,32 @@ namespace mrs.Controllers
             return View(seatReservations);
         }
 
-        //[HttpPost]
-        //public ActionResult Delete(long SeatReservationId)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        MrsContext mrs = new MrsContext();
-        //        SeatReservation sr = mrs.SeatReservations.Where(i => i.Id == SeatReservationId).FirstOrDefault();
-        //        mrs.SeatReservations.Remove(sr);
-        //        mrs.SaveChanges();
-        //    }
-        //    return RedirectToAction("MojeRezervacije");
-        //}
+        //GET:/Reservation/Delete/5
+
+        public async Task<ActionResult> Delete(long? id)
+        {
+            MrsContext mrs = new MrsContext();
+
+            var sr = await mrs.SeatReservations.SingleOrDefaultAsync(m => m.Id == id);
+
+            sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
+            sr.Screening.Projection = mrs.Projections.Single(s => s.Id == sr.Screening.ProjectionId);
+            sr.Seat = mrs.Seats.Single(s => s.Id == sr.SeatId);
+
+            return View(sr);
+        }
+
+        //POST:/Reservation/Delete/5
+        [HttpPost, ActionName("Delete")]
+        public async Task<ActionResult> DeleteConfirmed(long id)
+        {
+            MrsContext mrs = new MrsContext();
+
+            var sr = await mrs.SeatReservations.SingleOrDefaultAsync(m => m.Id == id);
+
+                mrs.SeatReservations.Remove(sr);
+                mrs.SaveChanges();
+                return RedirectToAction("MojeRezervacije");
+        }
     }
 }

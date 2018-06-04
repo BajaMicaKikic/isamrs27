@@ -7,7 +7,7 @@
 
 <h2>Index</h2>
 
-<h4>SeatReservation</h4>
+<h4>Rezervacija</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -45,14 +45,14 @@
                         asp-items="@(new SelectList(string.Empty, "SeatId", "SeatNumber"))"></select>
             </div>
             <div class="form-group">
-                <input type="submit" asp-controller="Reservation" asp-action="Reservate" value="Reservate" class="btn btn-default" />
+                <input type="submit" asp-controller="Reservation" asp-action="Reservate" value="Rezervisi" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div class="form-group">
-    <a asp-area="" asp-controller="Home" asp-action="Profil">Nazad na profil</a>
+    <a asp-area="" asp-controller="Home" asp-action="LoggedIn">Nazad</a>
 </div>
 <br />
 <div class="form-group">

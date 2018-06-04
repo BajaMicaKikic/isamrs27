@@ -10,9 +10,9 @@
 <table class="table">
     <thead>
         <tr>
-            @*<th>
+            <th>
                     @Html.DisplayNameFor(model => model.Id)
-                </th>*@
+                </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.IsReserved)
                 </th>
@@ -23,13 +23,13 @@
                     @Html.DisplayNameFor(model => model.IsActive)
                 </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.ScreeningId)
+                @Html.DisplayNameFor(model => model.Screening.Projection.ProjectionName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ScreeningId)
+                @Html.DisplayNameFor(model => model.Screening.ScreenStartDateTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SeatId)
+                @Html.DisplayNameFor(model => model.Seat.SeatNumber)
             </th>
             @*<th>
                     @Html.DisplayNameFor(model => model.UserId)
@@ -41,9 +41,9 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
+                <td>
                         @Html.DisplayFor(modelItem => item.Id)
-                    </td>*@
+                    </td>
                 @*<td>
                         @Html.DisplayFor(modelItem => item.IsReserved)
                     </td>
@@ -67,8 +67,9 @@
                     </td>*@
                 <td>
                     @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
-                    <a asp-controller="Reservation" asp-action="Delete" asp-route-id="@item.Id">Otkazi</a>
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-area="" asp-controller="Reservation" asp-action="Delete" asp-route-id="@item.Id">Otkazi</a>
+                   @* <a @*asp-controller="Reservation" asp-action="Delete" asp-route-id="@item.Id">Otkazi</a>*@
                 </td>
             </tr>
         }

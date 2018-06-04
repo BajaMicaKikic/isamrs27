@@ -56,6 +56,8 @@
             var hall1 = new CultureObjectHall { HallName = "Mira Stupica", SeatsNo = 1000, CultureObject = cultureObject1 };
             var hall2 = new CultureObjectHall { HallName = "Main Hall", SeatsNo = 1300, CultureObject = cultureObject1 };
             var hall3 = new CultureObjectHall { HallName = "Private Hall", SeatsNo = 150, CultureObject = cultureObject1 };
+            var hall4 = new CultureObjectHall { HallName = "Mala sala", SeatsNo = 100, CultureObject = cultureObject2 };
+            var hall5 = new CultureObjectHall { HallName = "Velika sala", SeatsNo = 500, CultureObject = cultureObject2 };
 
             var hallSegment1 = new HallSegment { HallSegmentName = "Balkon", SeatsNo = 100, CultureObjecsHall = hall1 };
             var hallSegment2 = new HallSegment { HallSegmentName = "Parter", SeatsNo = 500, CultureObjecsHall = hall1 };
@@ -65,10 +67,19 @@
             var hallSegment5 = new HallSegment { HallSegmentName = "Parter", SeatsNo = 500, CultureObjecsHall = hall2 };
             var hallSegment6 = new HallSegment { HallSegmentName = "VIP", SeatsNo = 40, CultureObjecsHall = hall2 };
 
+            var hallSegment7 = new HallSegment { HallSegmentName = "Balkon", SeatsNo = 100, CultureObjecsHall = hall4 };
+            var hallSegment8 = new HallSegment { HallSegmentName = "Parter", SeatsNo = 500, CultureObjecsHall = hall4 };
+            var hallSegment9 = new HallSegment { HallSegmentName = "VIP", SeatsNo = 40, CultureObjecsHall = hall4 };
 
-            var screening1 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 30, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
-            var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 31, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection2 };
-            var screening3 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 5, 31, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
+            var hallSegment10 = new HallSegment { HallSegmentName = "Balkon", SeatsNo = 100, CultureObjecsHall = hall5 };
+            var hallSegment11= new HallSegment { HallSegmentName = "Parter", SeatsNo = 500, CultureObjecsHall = hall5 };
+            var hallSegment12= new HallSegment { HallSegmentName = "VIP", SeatsNo = 40, CultureObjecsHall = hall5 };
+
+            var screening1 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 10, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
+            var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 11, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection2 };
+            var screening3 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 11, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
+            var screening4 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 11, 20, 0, 0), CultureObjecsHall = hall4, Projection = projection2 };
+            var screening5 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 4, 15, 30, 0), CultureObjecsHall = hall4, Projection = projection2 };
 
             var seat31 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment3 };
             var seat32 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment3 };
@@ -106,6 +117,41 @@
             var seat44 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment4 };
             var seat45 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment4 };
 
+            var seat71 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment7 };
+            var seat72 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment7 };
+            var seat73 = new Seat { Row = 3, SeatNumber = "3", HallSegment = hallSegment7 };
+            var seat74 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment7 };
+            var seat75 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment7 };
+
+            var seat81 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment8 };
+            var seat82 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment8 };
+            var seat83 = new Seat { Row = 3, SeatNumber = "3", HallSegment = hallSegment8 };
+            var seat84 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment8 };
+            var seat85 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment8 };
+
+            var seat91 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment9 };
+            var seat92 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment9 };
+            var seat93 = new Seat { Row = 3, SeatNumber = "3", HallSegment = hallSegment9 };
+            var seat94 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment9 };
+            var seat95 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment9 };
+
+            var seat101 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment10 };
+            var seat102 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment10 };
+            var seat103 = new Seat { Row = 3, SeatNumber = "3", HallSegment = hallSegment10 };
+            var seat104 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment10 };
+            var seat105 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment10 };
+
+            var seat111 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment11 };
+            var seat112 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment11 };
+            var seat113 = new Seat { Row = 3, SeatNumber = "3", HallSegment = hallSegment11 };
+            var seat114 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment11 };
+            var seat115 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment11 };
+
+            var seat121 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment12 };
+            var seat122 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment12 };
+            var seat123 = new Seat { Row = 3, SeatNumber = "3", HallSegment = hallSegment12 };
+            var seat124 = new Seat { Row = 4, SeatNumber = "4", HallSegment = hallSegment12 };
+            var seat125 = new Seat { Row = 5, SeatNumber = "5", HallSegment = hallSegment12 };
 
             var seatReservation1 = new SeatReservation { Screening = screening1, Seat = seat21, User=user1 };
             var seatReservation2 = new SeatReservation { Screening = screening1, Seat = seat22, User=user2};
@@ -146,11 +192,12 @@
             await cultureObjectRepository.AddAsync(cultureObject6);
             await cultureObjectRepository.AddAsync(cultureObject7);
             await cultureObjectRepository.AddAsync(cultureObject8);
-
             
             await cultureObjectHallRepository.AddAsync(hall1);
             await cultureObjectHallRepository.AddAsync(hall2);
             await cultureObjectHallRepository.AddAsync(hall3);
+            await cultureObjectHallRepository.AddAsync(hall4);
+            await cultureObjectHallRepository.AddAsync(hall5);
 
             await hallSegmentRepository.AddAsync(hallSegment1);
             await hallSegmentRepository.AddAsync(hallSegment2);
@@ -160,10 +207,20 @@
             await hallSegmentRepository.AddAsync(hallSegment5);
             await hallSegmentRepository.AddAsync(hallSegment6);
 
+            await hallSegmentRepository.AddAsync(hallSegment7);
+            await hallSegmentRepository.AddAsync(hallSegment8);
+            await hallSegmentRepository.AddAsync(hallSegment9);
+
+            await hallSegmentRepository.AddAsync(hallSegment10);
+            await hallSegmentRepository.AddAsync(hallSegment11);
+            await hallSegmentRepository.AddAsync(hallSegment12);
+
             await screeningRepository.AddAsync(screening1);
             await screeningRepository.AddAsync(screening2);
             await screeningRepository.AddAsync(screening3);
-            
+            await screeningRepository.AddAsync(screening4);
+            await screeningRepository.AddAsync(screening5);
+
             await seatRepository.AddAsync(seat11);
             await seatRepository.AddAsync(seat12);
             await seatRepository.AddAsync(seat13);
@@ -194,6 +251,36 @@
             await seatRepository.AddAsync(seat63);
             await seatRepository.AddAsync(seat64);
             await seatRepository.AddAsync(seat65);
+            await seatRepository.AddAsync(seat71);
+            await seatRepository.AddAsync(seat72);
+            await seatRepository.AddAsync(seat73);
+            await seatRepository.AddAsync(seat74);
+            await seatRepository.AddAsync(seat75);
+            await seatRepository.AddAsync(seat81);
+            await seatRepository.AddAsync(seat82);
+            await seatRepository.AddAsync(seat83);
+            await seatRepository.AddAsync(seat84);
+            await seatRepository.AddAsync(seat85);
+            await seatRepository.AddAsync(seat91);
+            await seatRepository.AddAsync(seat92);
+            await seatRepository.AddAsync(seat93);
+            await seatRepository.AddAsync(seat94);
+            await seatRepository.AddAsync(seat95);
+            await seatRepository.AddAsync(seat101);
+            await seatRepository.AddAsync(seat102);
+            await seatRepository.AddAsync(seat103);
+            await seatRepository.AddAsync(seat104);
+            await seatRepository.AddAsync(seat105);
+            await seatRepository.AddAsync(seat111);
+            await seatRepository.AddAsync(seat112);
+            await seatRepository.AddAsync(seat113);
+            await seatRepository.AddAsync(seat114);
+            await seatRepository.AddAsync(seat115);
+            await seatRepository.AddAsync(seat121);
+            await seatRepository.AddAsync(seat122);
+            await seatRepository.AddAsync(seat123);
+            await seatRepository.AddAsync(seat124);
+            await seatRepository.AddAsync(seat125);
 
             await seatReservationRepository.AddAsync(seatReservation1);
             await seatReservationRepository.AddAsync(seatReservation2);
