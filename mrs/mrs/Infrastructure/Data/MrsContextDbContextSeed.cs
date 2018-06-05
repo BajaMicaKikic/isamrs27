@@ -79,7 +79,7 @@
             var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 11, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection2 };
             var screening3 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 11, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
             var screening4 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 11, 20, 0, 0), CultureObjecsHall = hall4, Projection = projection2 };
-            var screening5 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 4, 15, 30, 0), CultureObjecsHall = hall4, Projection = projection2 };
+            var screening5 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 5, 21, 40, 0), CultureObjecsHall = hall4, Projection = projection2 };
 
             var seat31 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment3 };
             var seat32 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment3 };

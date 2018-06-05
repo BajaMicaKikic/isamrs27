@@ -168,10 +168,22 @@ namespace mrs.Controllers
             MrsContext mrs = new MrsContext();
 
             var sr = await mrs.SeatReservations.SingleOrDefaultAsync(m => m.Id == id);
+            sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
+            DateTime dateToday = DateTime.Now;
+            DateTime srdatetime = sr.Screening.ScreenStartDateTime;
 
+            TimeSpan difference = dateToday.Subtract(srdatetime);
+
+            double totalMinutes = difference.TotalMinutes;
+
+            if (Math.Abs(totalMinutes) > 30)
+            {
                 mrs.SeatReservations.Remove(sr);
                 mrs.SaveChanges();
                 return RedirectToAction("MojeRezervacije");
+            }
+            //else { ViewBag.Message("Ne mozete otkazati za manje od 30 minuta pre projekcije!"); }
+            return RedirectToAction("MojeRezervacije");
         }
     }
 }
