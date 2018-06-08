@@ -6,5 +6,5 @@ Potrebni alati:<br>
 -Xampp (MySql) <br>
 <br>
 Pokretanje aplikacije:<br>
--Pokrenuti u xampp control panel-u Apache i MySql<br>
+-Pokrenuti u xampp control panel-u Apache i MySql, za MySql pokrenuti Admin<br>
 -Pokrenuti projekat u Visual Studiu (IIS Express)<br>
