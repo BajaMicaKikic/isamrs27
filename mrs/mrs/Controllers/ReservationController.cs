@@ -128,6 +128,9 @@ namespace mrs.Controllers
                 sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
                 sr.Screening.Projection = mrs.Projections.Single(s => s.Id == sr.Screening.ProjectionId);
                 sr.Seat = mrs.Seats.Single(s => s.Id == sr.SeatId);
+                sr.Screening.CultureObjecsHall = mrs.CultureObjectHalls.Single(s => s.Id == sr.Screening.CultureObjectHallId);
+                sr.Screening.CultureObjecsHall.CultureObject = mrs.CultureObjects.Single(s => s.Id == sr.Screening.CultureObjecsHall.CultureObjectId);
+                //sr.Screening.Projection=mrs
             }
             return View(seatReservations);
         }
