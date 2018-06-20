@@ -1,0 +1,50 @@
+﻿@model mrs.ApplicationCore.Entities.PropAd
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PropAd</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PropPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PropPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PropDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PropDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EndBidDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EndBidDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThematicProp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThematicProp.PropName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

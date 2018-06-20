@@ -1,0 +1,151 @@
+﻿@model IEnumerable<mrs.ApplicationCore.Entities.PropAd>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutUsers.cshtml";
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if (User.IsInRole("Registered User"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndBidDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThematicProp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetString("Id")) == item.UserId)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PropPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PropDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndBidDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThematicProp.PropName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.FirstName)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PropPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PropDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndBidDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThematicProp.PropName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.City)
+                        </td>
+                        <td>
+                            @if (item.UserReservedId == null)
+                            {
+                                <a asp-action="Reserved" asp-route-id="@item.Id">Reserve |</a> 
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+else if (User.IsInRole("Fun Zone Administrator"))
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PropDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndBidDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThematicProp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PropPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PropDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndBidDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThematicProp.PropName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.City)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+

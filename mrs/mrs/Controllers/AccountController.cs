@@ -2,13 +2,16 @@
 {
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using mrs.ApplicationCore.Entities;
     using mrs.ApplicationCore.Interfaces.Repository;
     using mrs.Infrastructure.AppIdentity;
+    using mrs.Infrastructure.Data;
     using mrs.ViewModels.Account;
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     /// <summary>
     /// Class that represent account logic.
@@ -79,10 +82,20 @@
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                
+                    return View(model);
             }
             ViewData["ReturnUrl"] = returnUrl;
-
+            using (MrsContext mrs = new MrsContext())
+            {
+                var usr = mrs.Users.Where(u => u.EmailAddress == model.Email && u.Password == model.Password).FirstOrDefault();
+                if (usr != null)
+                {
+                    var id = usr.Id.ToString();
+                    
+                    HttpContext.Session.SetString("Id", id);
+                }
+            }
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
             if (result.RequiresTwoFactor)
             {

@@ -16,10 +16,15 @@
             builder.Property(p => p.PropPrice).HasColumnName("PropPrice").IsRequired();
             builder.Property(p => p.PropDescription).HasColumnName("PropDescription").IsRequired();
             builder.Property(p => p.EndBidDate).HasColumnName("EndBidDate").IsRequired();
+            builder.Property(p => p.UserReservedId).HasColumnName("UserReserveId");
             //Relations
             builder.HasOne(p => p.User)
                .WithMany(u => u.PropAds)
                .HasForeignKey(p => p.UserId);
+
+            builder.HasOne(p => p.UserReserved)
+                .WithMany(u => u.ReservedAds)
+                .HasForeignKey(p => p.UserReservedId);
 
             builder.HasOne(p => p.ThematicProp)
                 .WithMany(t => t.PropAds)

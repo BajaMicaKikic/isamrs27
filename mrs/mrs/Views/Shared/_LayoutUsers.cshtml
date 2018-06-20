@@ -33,14 +33,17 @@
                 @if (User.IsInRole("Registered User"))
                 {
                     <a asp-area="" asp-controller="Profile" asp-action="Index" class="navbar-brand">Home</a>
+                    <a asp-area="" asp-controller="PropAds" asp-action="Index" class="navbar-brand ">Ads</a>
                 }
                 else if (User.IsInRole("Culture Object Administrator"))
                 {
-                    <a asp-area="" asp-controller="Profile" asp-action="Index" class="navbar-brand">Home</a>            
+                    <a asp-area="" asp-controller="Profile" asp-action="Index" class="navbar-brand">Home</a>
                 }
                 else if (User.IsInRole("Fun Zone Administrator"))
                 {
-                    <a asp-area="" asp-controller="Profile" asp-action="Index" class="navbar-brand">Home</a>           
+                    <a asp-area="" asp-controller="Profile" asp-action="Index" class="navbar-brand">Home</a>
+                    <a asp-area="" asp-controller="PropAds" asp-action="Index" class="navbar-brand ">Ads</a>
+                    <a asp-area=""  asp-controller="ThematicProps" asp-action="Index" class="navbar-brand">Thematic props</a>
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -61,7 +64,6 @@
                     }
                     else if (User.IsInRole("Fun Zone Administrator"))
                     {
-                        <li><a asp-area="" asp-controller="FunZoneAdmin" asp-action="Props">Props</a></li>
                         <li><a asp-area="" asp-controller="Manage" asp-action="Index">Settings</a></li>
                     }
                 </ul>

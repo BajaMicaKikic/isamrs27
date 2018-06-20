@@ -21,6 +21,13 @@ namespace mrs.ApplicationCore.Entities
         /// </value>
         public long UserId { get; set; }
         /// <summary>
+        /// Gets or sets the user identifier.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public long? UserReservedId { get; set; }
+        /// <summary>
         /// Gets or sets the property identifier.
         /// </summary>
         /// <value>
@@ -62,5 +69,12 @@ namespace mrs.ApplicationCore.Entities
         /// The thematic property.
         /// </value>
         public ThematicProp ThematicProp { get; set; }
+        /// <summary>
+        /// Gets or sets the UserReserved.
+        /// </summary>
+        /// <value>
+        /// The user.
+        /// </value>
+        public User UserReserved { get; set; }
     }
 }

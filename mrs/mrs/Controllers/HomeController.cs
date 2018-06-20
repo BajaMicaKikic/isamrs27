@@ -55,7 +55,6 @@ namespace mrs.Controllers
                 if (usr != null)
                 {
                     HttpContext.Session.SetString("Id", usr.Id.ToString());
-
                     TempData["Id"] = usr.Id.ToString();
                     TempData["EmailAddress"] = usr.EmailAddress.ToString();
 

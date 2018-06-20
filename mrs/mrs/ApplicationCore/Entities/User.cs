@@ -15,6 +15,7 @@ namespace mrs.ApplicationCore.Entities
         {
             Remarks = new List<Remark>();
             PropAds = new List<PropAd>();
+            ReservedAds = new List<PropAd>();
         }
         /// <summary>
         /// Gets or sets the first name.
@@ -92,6 +93,21 @@ namespace mrs.ApplicationCore.Entities
         {
             get { return _propAds; }
             set { _propAds = (List<PropAd>)value; }
+        }
+        /// <summary>
+        /// The reseved ads
+        /// </summary>
+        private List<PropAd> _resevedAds = new List<PropAd>();
+        /// <summary>
+        /// Gets or sets the property ads.
+        /// </summary>
+        /// <value>
+        /// The property ads.
+        /// </value>
+        public ICollection<PropAd> ReservedAds
+        {
+            get { return _resevedAds; }
+            set { _resevedAds = (List<PropAd>)value; }
         }
         private List<SeatReservation> _seatReservations = new List<SeatReservation>();
         /// <summary>
