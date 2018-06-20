@@ -69,7 +69,7 @@ namespace mrs.Controllers
         public IActionResult Create()
         {
             ViewData["ThematicPropId"] = new SelectList(_context.ThematicProps, "Id", "PropName");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "FirstName");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "EmailAddress");
             return View();
         }
 
@@ -88,7 +88,7 @@ namespace mrs.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ThematicPropId"] = new SelectList(_context.ThematicProps, "Id", "PropName", propAd.ThematicPropId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "FirstName", propAd.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "EmailAddress", propAd.UserId);
             return View(propAd);
         }
 
@@ -106,7 +106,7 @@ namespace mrs.Controllers
                 return NotFound();
             }
             ViewData["ThematicPropId"] = new SelectList(_context.ThematicProps, "Id", "PropName", propAd.ThematicPropId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "FirstName", propAd.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "EmailAddress", propAd.UserId);
             return View(propAd);
         }
 
@@ -143,7 +143,7 @@ namespace mrs.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ThematicPropId"] = new SelectList(_context.ThematicProps, "Id", "PropName", propAd.ThematicPropId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "FirstName", propAd.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "EmailAddress", propAd.UserId);
             return View(propAd);
         }
 
