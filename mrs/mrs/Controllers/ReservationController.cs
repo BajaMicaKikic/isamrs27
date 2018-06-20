@@ -140,11 +140,17 @@ namespace mrs.Controllers
             int idUser = int.Parse(HttpContext.Session.GetString("Id"));
             MrsContext mrs = new MrsContext();
             List<SeatReservation> seatReservations = mrs.SeatReservations.ToList().FindAll(i => i.UserId == idUser);
-            foreach(SeatReservation sr in seatReservations)
+            foreach (SeatReservation sr in seatReservations)
             {
                 sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
-                sr.Screening.CultureObjecsHall = mrs.CultureObjectHalls.Single(s => s.Id == sr.Screening.CultureObjectHallId);
-                sr.Screening.CultureObjecsHall.CultureObject = mrs.CultureObjects.Single(s => s.Id == sr.Screening.CultureObjecsHall.CultureObjectId);
+                if (sr.Screening.ScreenStartDateTime < DateTime.Now)
+                {
+                    {
+                        sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
+                        sr.Screening.CultureObjecsHall = mrs.CultureObjectHalls.Single(s => s.Id == sr.Screening.CultureObjectHallId);
+                        sr.Screening.CultureObjecsHall.CultureObject = mrs.CultureObjects.Single(s => s.Id == sr.Screening.CultureObjecsHall.CultureObjectId);
+                    }
+                }
             }
             return View(seatReservations);
         }
@@ -170,23 +176,24 @@ namespace mrs.Controllers
         {
             MrsContext mrs = new MrsContext();
 
-            var sr = await mrs.SeatReservations.SingleOrDefaultAsync(m => m.Id == id);
-            sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
-            DateTime dateToday = DateTime.Now;
-            DateTime srdatetime = sr.Screening.ScreenStartDateTime;
+                var sr = await mrs.SeatReservations.SingleOrDefaultAsync(m => m.Id == id);
+                sr.Screening = mrs.Screenings.Single(s => s.Id == sr.ScreeningId);
+                DateTime dateToday = DateTime.Now;
+                DateTime srdatetime = sr.Screening.ScreenStartDateTime;
 
-            TimeSpan difference = dateToday.Subtract(srdatetime);
+                TimeSpan difference = dateToday.Subtract(srdatetime);
 
-            double totalMinutes = difference.TotalMinutes;
+                double totalMinutes = difference.TotalMinutes;
 
-            if (Math.Abs(totalMinutes) > 30)
-            {
-                mrs.SeatReservations.Remove(sr);
-                mrs.SaveChanges();
+                if (Math.Abs(totalMinutes) > 30)
+                {
+                    mrs.SeatReservations.Remove(sr);
+                    mrs.SaveChanges();
+                    return RedirectToAction("MojeRezervacije");
+                }
+                //else { ViewBag.Message("Ne mozete otkazati za manje od 30 minuta pre projekcije!"); }
                 return RedirectToAction("MojeRezervacije");
-            }
-            //else { ViewBag.Message("Ne mozete otkazati za manje od 30 minuta pre projekcije!"); }
-            return RedirectToAction("MojeRezervacije");
+            
         }
     }
 }

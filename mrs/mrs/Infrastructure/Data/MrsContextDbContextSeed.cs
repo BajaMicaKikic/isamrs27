@@ -75,11 +75,11 @@
             var hallSegment11= new HallSegment { HallSegmentName = "Parter", SeatsNo = 500, CultureObjecsHall = hall5 };
             var hallSegment12= new HallSegment { HallSegmentName = "VIP", SeatsNo = 40, CultureObjecsHall = hall5 };
 
-            var screening1 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 14, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
-            var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 15, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection2 };
-            var screening3 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 15, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
-            var screening4 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 15, 20, 0, 0), CultureObjecsHall = hall4, Projection = projection2 };
-            var screening5 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 16, 21, 40, 0), CultureObjecsHall = hall4, Projection = projection2 };
+            var screening1 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 28, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
+            var screening2 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 28, 20, 0, 0), CultureObjecsHall = hall1, Projection = projection2 };
+            var screening3 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 28, 20, 0, 0), CultureObjecsHall = hall2, Projection = projection1 };
+            var screening4 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 28, 20, 0, 0), CultureObjecsHall = hall4, Projection = projection2 };
+            var screening5 = new Screening { ScreenStartDateTime = new System.DateTime(2018, 6, 27, 11, 30, 0), CultureObjecsHall = hall4, Projection = projection2 };
 
             var seat31 = new Seat { Row = 1, SeatNumber = "1", HallSegment = hallSegment3 };
             var seat32 = new Seat { Row = 2, SeatNumber = "2", HallSegment = hallSegment3 };
