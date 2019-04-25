@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+}
+<div class="container">
+    <div class="row h1">
+        <div class="col-md-6 col-md-offset-3">
+            <button class="btn-lg btn-info col-md-6 col-md-offset-3" type="button" value="CINEMAS" onclick="location.href='@Url.Action("CinemasAsync", "CultureObjectsHome")'">CINEMAS</button>
+        </div>
+    </div>
+    <div class="row h1">
+        <div class="col-md-6 col-md-offset-3">
+            <button class="btn-lg btn-info col-md-6 col-md-offset-3" type="button" value="THEATERS" onclick="location.href='@Url.Action("TheatersAsync", "CultureObjectsHome")'">THEATERS</button>
+        </div>
+    </div>
+    <div class="row h1">
+        <div class="col-md-6 col-md-offset-3">
+            <button class="btn-lg btn-info col-md-6 col-md-offset-3" type="button" value="LOGIN" onclick="location.href='@Url.Action("Login", "Home")'">LOGIN</button>
+        </div>
+    </div>
+</div>
+

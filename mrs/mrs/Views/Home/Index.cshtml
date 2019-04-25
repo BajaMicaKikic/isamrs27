@@ -5,4 +5,26 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     UNIVERSITY APP
 </div>
+@*<a asp-action="Login">Prijavi se</a>*@
 
+<div class="col-md-10 col-md-offset-1">
+    <div class="col-md-2">
+        <a href='@Url.Action("CinemasAsync", "CultureObjectsHome")'>
+            <img src="~/images/CinemaIcon.png" />
+        </a>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-2">
+        <a href='@Url.Action("TheatersAsync", "CultureObjectsHome")'>
+            <img src="~/images/TheaterIcon.png" />
+        </a>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-1 btn-info">
+        <a href='@Url.Action("Login", "Home")'>
+            LOGIN
+        </a>
+    </div>
+</div>

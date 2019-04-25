@@ -1,0 +1,41 @@
+﻿@model mrs.ViewModels.CultureObjectsHome.MoviesViewModel
+
+@{
+    ViewData["Title"] = "MovieProjections";
+}
+
+<h2>MovieProjections</h2>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    Indeks
+                </th>
+                <th>
+                    Movie Name
+                </th>
+                <th>
+                    Movie Short Description
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Items) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieShortDescription)
+            </td>           
+            <td>
+                <a asp-action="ScreeningInfo" asp-route-CultureObjectId="@Model.CultureObjectId" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

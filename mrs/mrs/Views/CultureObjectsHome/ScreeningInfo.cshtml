@@ -1,0 +1,41 @@
+﻿@model List<mrs.ViewModels.CultureObjectsHome.ScreeningViewModel>
+
+<h2>Screenings</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Hall
+            </th>
+            <th>
+                Screening Date Time
+            </th>
+            <th>
+                Free Seats Number
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScreeningProjectionTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScreeningProjectionHall)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScreeningDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FreeSpacesNumber)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
